@@ -15,19 +15,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Characters"
-
+        android:onClick="startCharacter"
         />
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Account"
-        android:onClick="accountMenu"
+        android:onClick="startLogin"
         />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Guides"
+        android:onClick="startGuides"
         />
 
 </LinearLayout>
