@@ -14,18 +14,18 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Login"
-        android:onClick="logIn"
+        android:text="@string/login"
+        />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/create_account"
         />
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text= "Create"
-        />
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Facebook"
+        android:text="@string/login_via_facebook"
         />
 
 </LinearLayout>
