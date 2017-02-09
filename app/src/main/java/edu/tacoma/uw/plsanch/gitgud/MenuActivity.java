@@ -15,18 +15,18 @@ public class MenuActivity extends AppCompatActivity {
 
     }
 
-    public void startCharacter(View view){
+    public void startCharacter (View view){
         Intent intent = new Intent(this, CharacterActivity.class);
         startActivity(intent);
     }
 
-    public void startAccount(View view){
-        Intent intent = new Intent(this, AccountActivity.class);
-        startActivity(intent);
-    }
-    public void startGuides(View view){
-        Intent intent = new Intent(this, GuidesActivity.class);
+    public void startLogin (View view){
+        Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
 
+    public void startGuide (View view){
+        Intent intent = new Intent(this, CharacterActivity.class);
+        startActivity(intent);
+    }
 }
