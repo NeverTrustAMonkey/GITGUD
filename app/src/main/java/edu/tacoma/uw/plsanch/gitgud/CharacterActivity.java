@@ -35,6 +35,11 @@ public class CharacterActivity extends AppCompatActivity implements AdapterView.
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner2.setAdapter(adapter2);
         spinner2.setOnItemSelectedListener(this);
+        InfoFragment infoFragment = new InfoFragment();
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_container, infoFragment)
+                    .addToBackStack(null)
+                    .commit();
     }
 
     public void onItemSelected(AdapterView<?> parent, View view,

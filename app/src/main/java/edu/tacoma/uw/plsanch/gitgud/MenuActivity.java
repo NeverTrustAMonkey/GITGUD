@@ -26,7 +26,7 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     public void startGuide (View view){
-        Intent intent = new Intent(this, CharacterActivity.class);
+        Intent intent = new Intent(this, GuideActivity.class);
         startActivity(intent);
     }
 }
