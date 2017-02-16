@@ -99,17 +99,25 @@ public class CharacterActivity extends AppCompatActivity implements AdapterView.
 
         @Override
         protected void onPostExecute(String result) {
-            String theDisplay = "";
+            String theDisplay = "COUNTERS:\n";
             //theDisplay = result;
-            theDisplay += result.substring(14, result.indexOf(','));
+
+            theDisplay += result.substring(result.indexOf(':') + 2, result.indexOf(','));
             result = result.substring(result.indexOf(',') + 1,result.length());
-            //theDisplay += " " + result.substring(result.indexOf(','), result.lastIndexOf(','));
             while(!result.startsWith("\"")){
                 theDisplay += "\n" + result.substring(0, result.indexOf(','));
                 result = result.substring(result.indexOf(',') + 1, result.length());
             }
             theDisplay = theDisplay.substring(0,theDisplay.length() - 1);
+            theDisplay += "\n\nSYNERGIES:\n";
+            theDisplay += result.substring(result.indexOf(':') + 2, result.indexOf(','));
+            result = result.substring(result.indexOf(',') + 1,result.length());
 
+            while(result.contains(",")){
+                theDisplay += "\n" + result.substring(0, result.indexOf(','));
+                result = result.substring(result.indexOf(',') + 1, result.length());
+            }
+            theDisplay+= "\n" + result.substring(0, result.indexOf("\""));
 
 
             if(side == 1){
