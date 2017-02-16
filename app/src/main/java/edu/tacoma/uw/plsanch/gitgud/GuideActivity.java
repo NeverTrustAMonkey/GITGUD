@@ -7,8 +7,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+/**
+ * The guide activity will hold a list of guides for users to view.
+ *
+ */
 public class GuideActivity extends AppCompatActivity {
 
+    /**
+     * onCreate handles the start up tasks.
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
