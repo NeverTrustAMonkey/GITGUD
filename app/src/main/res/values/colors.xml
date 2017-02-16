@@ -3,4 +3,10 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <color name="ow_black">#060606</color>
+    <color name="ow_charcoal">#2F2526</color>
+    <color name="ow_grey">#584F4A</color>
+    <color name="ow_orange">#FAA02E</color>
+    <color name="ow_light_orange">#FCBD49</color>
 </resources>
