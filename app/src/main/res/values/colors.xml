@@ -7,7 +7,7 @@
     <!--Overwatch Basic Colors for our Pallete-->
     <color name="ow_black">#060606</color>
     <color name="ow_charcoal">#2F2526</color>
-    <color name="ow_grey">#584F4A</color>
+    <color name="ow_grey">#584f4a</color>
     <color name="ow_orange">#FAA02E</color>
     <color name="ow_light_orange">#FCBD49</color>
 </resources>

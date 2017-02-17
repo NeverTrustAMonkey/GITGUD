@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"
         android:text="Characters"
         android:onClick="startCharacter"
-        />
+        android:elevation="0dp" />
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

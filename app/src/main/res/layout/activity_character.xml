@@ -35,7 +35,9 @@
         android:layout_alignParentStart="true"
         android:id="@+id/spinner1"
         android:layout_width="160dp"
-        android:layout_height="30dp" />
+        android:layout_height="30dp"
+        android:popupBackground="@color/ow_orange"
+        android:background="@color/ow_grey" />
 
     <Spinner
         android:layout_height="30dp"
@@ -43,7 +45,9 @@
         android:layout_below="@+id/imageView2"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_width="160dp" />
+        android:layout_width="160dp"
+        android:background="@color/ow_grey"
+        android:popupBackground="@color/ow_light_orange" />
 
 
 
@@ -83,8 +87,6 @@
         <TextView
             android:id="@+id/StatView1"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:textSize="24dp"
-            />
+            android:layout_height="wrap_content" />
     </ScrollView>
 </RelativeLayout>
