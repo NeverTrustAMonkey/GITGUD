@@ -97,7 +97,7 @@ public class CharacterActivity extends AppCompatActivity implements AdapterView.
     public void onItemSelected(AdapterView<?> parent, View view,
                                int pos, long id) {
     System.out.println(parent.getId());
-        if(parent.getId() == 2131624055) {//This really long number is the id of the left Spinner.
+        if(parent.getId() == spinner1.getId()) {//This really long number is the id of the left Spinner.
             /*This line ^^^^ will be less sloppy in later versions, but for now it works.*/
             //Left Side Spinner
             int position1 = spinner1.getSelectedItemPosition();
