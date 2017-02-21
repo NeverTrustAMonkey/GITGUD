@@ -82,7 +82,7 @@ public class CharacterActivity extends AppCompatActivity implements AdapterView.
         theURL += "cmd=" + theColumn;
         theURL += "&hero=" + theHero;
         DownloadInfoTask task = new DownloadInfoTask();
-        task.execute(new String[]{theURL});
+        task.execute(theURL);
     }
 
     /**
@@ -96,8 +96,8 @@ public class CharacterActivity extends AppCompatActivity implements AdapterView.
      */
     public void onItemSelected(AdapterView<?> parent, View view,
                                int pos, long id) {
-
-        if(parent.getId() == 2131624054) {//This really long number is the id of the left Spinner.
+    System.out.println(parent.getId());
+        if(parent.getId() == spinner1.getId()) {//This really long number is the id of the left Spinner.
             /*This line ^^^^ will be less sloppy in later versions, but for now it works.*/
             //Left Side Spinner
             int position1 = spinner1.getSelectedItemPosition();
