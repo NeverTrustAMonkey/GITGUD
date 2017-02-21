@@ -1,5 +1,6 @@
 package edu.tacoma.uw.plsanch.gitgud;
 
+import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -32,6 +33,10 @@ public class CharacterActivity extends AppCompatActivity implements AdapterView.
 
     Integer side;//Binary switch
 
+    TextView tv,tv2,tv3;
+    Typeface tf, tf2;
+
+
     private static final String HERO_URL //Url base
             = "http://cssgate.insttech.washington.edu/~_450bteam9/hero.php?";
 
@@ -63,6 +68,20 @@ public class CharacterActivity extends AppCompatActivity implements AdapterView.
         spinner2.setOnItemSelectedListener(this);
         stats1.setText(display1);
         stats2.setText(display2);
+
+
+        //custom fonts here
+
+        //create fonts and set typefaces here
+        tv = (TextView) findViewById(R.id.characters);
+        tv2 = (TextView) findViewById(R.id.account);
+        tv3 = (TextView) findViewById(R.id.guides);
+        tf = Typeface.createFromAsset(getAssets(), "fonts/big_noodle_titling.ttf");
+        tf2 = Typeface.createFromAsset(getAssets(), "fonts/big_noodle_titling_oblique.ttf");
+
+        tv.setTypeface(tf);
+        tv2.setTypeface(tf);
+        tv3.setTypeface(tf);
     }
 
     /**
