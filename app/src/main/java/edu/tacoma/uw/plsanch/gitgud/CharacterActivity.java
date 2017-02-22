@@ -33,8 +33,7 @@ public class CharacterActivity extends AppCompatActivity implements AdapterView.
 
     Integer side;//Binary switch
 
-    TextView tv,tv2,tv3;
-    Typeface tf, tf2;
+
 
 
     private static final String HERO_URL //Url base
@@ -72,16 +71,7 @@ public class CharacterActivity extends AppCompatActivity implements AdapterView.
 
         //custom fonts here
 
-        //create fonts and set typefaces here
-        tv = (TextView) findViewById(R.id.characters);
-        tv2 = (TextView) findViewById(R.id.account);
-        tv3 = (TextView) findViewById(R.id.guides);
-        tf = Typeface.createFromAsset(getAssets(), "fonts/big_noodle_titling.ttf");
-        tf2 = Typeface.createFromAsset(getAssets(), "fonts/big_noodle_titling_oblique.ttf");
 
-        tv.setTypeface(tf);
-        tv2.setTypeface(tf);
-        tv3.setTypeface(tf);
     }
 
     /**
@@ -216,7 +206,7 @@ public class CharacterActivity extends AppCompatActivity implements AdapterView.
                     break;
             }
 
-        }else{
+        }else if(parent.getId() == spinner2.getId()){
             //Right Side Spinner
             int position2 = spinner2.getSelectedItemPosition ();
             ImageView imageView2 = (ImageView) findViewById(R.id.imageView2);
@@ -315,6 +305,7 @@ public class CharacterActivity extends AppCompatActivity implements AdapterView.
                     break;
             }
         }
+
     }
 
     /**
