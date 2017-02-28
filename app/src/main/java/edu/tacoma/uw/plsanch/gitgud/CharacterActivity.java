@@ -1,5 +1,6 @@
 package edu.tacoma.uw.plsanch.gitgud;
 
+import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -32,6 +33,9 @@ public class CharacterActivity extends AppCompatActivity implements AdapterView.
 
     Integer side;//Binary switch
 
+
+
+
     private static final String HERO_URL //Url base
             = "http://cssgate.insttech.washington.edu/~_450bteam9/hero.php?";
 
@@ -63,6 +67,11 @@ public class CharacterActivity extends AppCompatActivity implements AdapterView.
         spinner2.setOnItemSelectedListener(this);
         stats1.setText(display1);
         stats2.setText(display2);
+
+
+        //custom fonts here
+
+
     }
 
     /**
@@ -197,7 +206,7 @@ public class CharacterActivity extends AppCompatActivity implements AdapterView.
                     break;
             }
 
-        }else{
+        }else if(parent.getId() == spinner2.getId()){
             //Right Side Spinner
             int position2 = spinner2.getSelectedItemPosition ();
             ImageView imageView2 = (ImageView) findViewById(R.id.imageView2);
@@ -296,6 +305,7 @@ public class CharacterActivity extends AppCompatActivity implements AdapterView.
                     break;
             }
         }
+
     }
 
     /**

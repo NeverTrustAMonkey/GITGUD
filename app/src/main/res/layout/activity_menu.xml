@@ -29,13 +29,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Characters"
+        android:id="@+id/characters"
         android:onClick="startCharacter"
-        android:elevation="0dp" />
+        android:textSize="30dp" />
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Account"
         android:onClick="startLogin"
+        android:id="@+id/account"
+        android:textSize="30dp"
         />
 
     <Button
@@ -43,6 +46,8 @@
         android:layout_height="wrap_content"
         android:text="Guides"
         android:onClick="startGuide"
+        android:id="@+id/guides"
+        android:textSize="30dp"
         />
 
 </LinearLayout>
