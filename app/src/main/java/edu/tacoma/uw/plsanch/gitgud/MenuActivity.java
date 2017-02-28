@@ -67,8 +67,8 @@ public class MenuActivity extends AppCompatActivity {
      *
      * @param view is the View that is calling the method.
      */
-    public void startGuide (View view){
-        Intent intent = new Intent(this, GuideActivity.class);
+    public void startGuideBrowser (View view){
+        Intent intent = new Intent(this, GuideBrowserActivity.class);
         startActivity(intent);
     }
 }
