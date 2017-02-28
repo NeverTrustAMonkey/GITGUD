@@ -61,9 +61,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private View mProgressView;
     private View mLoginFormView;
 
-    private static final String LOGIN_URL //Url base
-            = "http://cssgate.insttech.washington.edu/~_450bteam9/login.php?";
-
     /**
      *
      * @param savedInstanceState

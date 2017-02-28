@@ -1,9 +1,11 @@
 package edu.tacoma.uw.plsanch.gitgud;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 /**
  * The Menu Activity holds Navigation buttons for the different sections of the App
@@ -15,10 +17,27 @@ public class MenuActivity extends AppCompatActivity {
      *
      * @param savedInstanceState
      */
+//custom fonts
+    TextView tv,tv2,tv3;
+    Typeface tf, tf2;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
+
+        //create fonts and set typefaces here
+        tv = (TextView) findViewById(R.id.characters);
+        tv2 = (TextView) findViewById(R.id.account);
+        tv3 = (TextView) findViewById(R.id.guides);
+        tf = Typeface.createFromAsset(getAssets(), "fonts/big_noodle_titling.ttf");
+        tf2 = Typeface.createFromAsset(getAssets(), "fonts/big_noodle_titling_oblique.ttf");
+
+        tv.setTypeface(tf);
+        tv2.setTypeface(tf);
+        tv3.setTypeface(tf);
+
 
 
     }

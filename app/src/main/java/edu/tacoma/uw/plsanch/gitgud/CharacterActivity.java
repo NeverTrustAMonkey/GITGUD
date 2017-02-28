@@ -1,5 +1,6 @@
 package edu.tacoma.uw.plsanch.gitgud;
 
+import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -39,6 +40,9 @@ public class CharacterActivity extends AppCompatActivity implements AdapterView.
     ImageButton imageButton;
     String setting;//Binary switch
 
+
+
+
     private static final String HERO_URL //Url base
             = "http://cssgate.insttech.washington.edu/~_450bteam9/hero.php?";
 
@@ -74,6 +78,7 @@ public class CharacterActivity extends AppCompatActivity implements AdapterView.
         imageButton.setImageResource(icon_counters_synergies);
         stats1.setText(display1);
         stats2.setText(display2);
+
         setting = "counters";
 
         imageButton.setOnClickListener(new View.OnClickListener() {
@@ -102,6 +107,7 @@ public class CharacterActivity extends AppCompatActivity implements AdapterView.
     }
 
     public void onClickListener(){
+
 
     }
 
@@ -233,12 +239,15 @@ public class CharacterActivity extends AppCompatActivity implements AdapterView.
      */
     public void onItemSelected(AdapterView<?> parent, View view,
                                int pos, long id) {
+
         if(parent.getId() == spinner1.getId()) {
             changeHero(spinner1, imageView1, 1);
 
         }else if(parent.getId() == spinner2.getId()){
             changeHero(spinner2, imageView2, 2);
+
         }
+
     }
 
     /**

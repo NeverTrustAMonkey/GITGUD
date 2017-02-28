@@ -9,6 +9,7 @@
         <item name="android:background">@color/ow_black</item>
         <item name="android:textColor">@color/ow_orange</item>
 
+
         <item name="android:editTextColor">@color/ow_orange</item>
         <item name="android:textColorHint">@color/ow_light_orange</item>
 
