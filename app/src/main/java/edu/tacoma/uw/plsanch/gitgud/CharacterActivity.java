@@ -38,7 +38,6 @@ public class CharacterActivity extends AppCompatActivity implements AdapterView.
     ImageView imageView2;
     ImageButton imageButton;
     String setting;//Binary switch
-    Integer side;//Binary switch
 
     private static final String HERO_URL //Url base
             = "http://cssgate.insttech.washington.edu/~_450bteam9/hero.php?";
@@ -81,13 +80,16 @@ public class CharacterActivity extends AppCompatActivity implements AdapterView.
             public void onClick(View v) {
                 if(setting == "counters"){
                     setting = "strengths";
+                    changeHero(spinner1, imageView1, 1);
                     imageButton.setImageResource(icon_strengths_weaknesses);
                 } else if(setting == "strengths"){
                     setting = "counters";
+                    changeHero(spinner1, imageView1, 1);
                     imageButton.setImageResource(icon_counters_synergies);
                 }
                 Toast toast = Toast.makeText(getApplicationContext(), "Mode Changed", Toast.LENGTH_SHORT);
                 toast.show();
+                changeHero(spinner2, imageView2, 2);
             }
         });
 
@@ -115,12 +117,109 @@ public class CharacterActivity extends AppCompatActivity implements AdapterView.
     public void getWeb(String theHero, String theColumn, int theSide){
 
         String theURL = "";
-        side = theSide;//Left:Right orientation
         theURL += HERO_URL;
         theURL += "cmd=" + theColumn;
         theURL += "&hero=" + theHero;
-        DownloadInfoTask task = new DownloadInfoTask();
+        DownloadInfoTask task = new DownloadInfoTask(theSide);
         task.execute(theURL);
+    }
+
+    public void changeHero(Spinner theSpinner, ImageView theImageView, int theSide){
+        int position = theSpinner.getSelectedItemPosition();
+        switch (position) {
+            case 0:
+                theImageView.setImageResource(R.mipmap.icon_genji);
+                getWeb("Genji", setting, theSide);
+                break;
+            case 1:
+                theImageView.setImageResource(R.mipmap.icon_mccree);
+                getWeb("McCree", setting, theSide);
+                break;
+            case 2:
+                theImageView.setImageResource(R.mipmap.icon_pharah);
+                getWeb("Pharah", setting, theSide);
+                break;
+            case 3:
+                theImageView.setImageResource(R.mipmap.icon_reaper);
+                getWeb("Reaper", setting, theSide);
+                break;
+            case 4:
+                theImageView.setImageResource(R.mipmap.icon_soldier76);
+                getWeb("Soldier76", setting, theSide);
+                break;
+            case 5:
+                theImageView.setImageResource(R.mipmap.icon_sombra);
+                getWeb("Sombra", setting, theSide);
+                break;
+            case 6:
+                theImageView.setImageResource(R.mipmap.icon_tracer);
+                getWeb("Tracer", setting, theSide);
+                break;
+            case 7:
+                theImageView.setImageResource(R.mipmap.icon_bastion);
+                getWeb("Bastion", setting, theSide);
+                break;
+            case 8:
+                theImageView.setImageResource(R.mipmap.icon_hanzo);
+                getWeb("Hanzo", setting, theSide);
+                break;
+            case 9:
+                theImageView.setImageResource(R.mipmap.icon_junkrat);
+                getWeb("Junkrat", setting, theSide);
+                break;
+            case 10:
+                theImageView.setImageResource(R.mipmap.icon_mei);
+                getWeb("Mei", setting, theSide);
+                break;
+            case 11:
+                theImageView.setImageResource(R.mipmap.icon_torbjorn);
+                getWeb("Torbjorn", setting, theSide);
+                break;
+            case 12:
+                theImageView.setImageResource(R.mipmap.icon_widowmaker);
+                getWeb("Widowmaker", setting, theSide);
+                break;
+            case 13:
+                theImageView.setImageResource(R.mipmap.icon_dva);
+                getWeb("D.va", setting, theSide);
+                break;
+            case 14:
+                theImageView.setImageResource(R.mipmap.icon_reinhardt);
+                getWeb("Reinhardt", setting, theSide);
+                break;
+            case 15:
+                theImageView.setImageResource(R.mipmap.icon_roadhog);
+                getWeb("Roadhog", setting, theSide);
+                break;
+            case 16:
+                theImageView.setImageResource(R.mipmap.icon_winston);
+                getWeb("Winston", setting, theSide);
+                break;
+            case 17:
+                theImageView.setImageResource(R.mipmap.icon_zarya);
+                getWeb("Zarya", setting, theSide);
+                break;
+            case 18:
+                theImageView.setImageResource(R.mipmap.icon_ana);
+                getWeb("Ana", setting, theSide);
+                break;
+            case 19:
+                theImageView.setImageResource(R.mipmap.icon_lucio);
+                getWeb("Lucio", setting, theSide);
+                break;
+            case 20:
+                theImageView.setImageResource(R.mipmap.icon_mercy);
+                getWeb("Mercy", setting, theSide);
+                break;
+            case 21:
+                theImageView.setImageResource(R.mipmap.icon_symmetra);
+                getWeb("Symmetra", setting, theSide);
+                break;
+            case 22:
+                theImageView.setImageResource(R.mipmap.icon_zenyatta);
+                getWeb("Zenyatta", setting, theSide);
+                break;
+        }
     }
 
     /**
@@ -135,199 +234,10 @@ public class CharacterActivity extends AppCompatActivity implements AdapterView.
     public void onItemSelected(AdapterView<?> parent, View view,
                                int pos, long id) {
         if(parent.getId() == spinner1.getId()) {
-            int position1 = spinner1.getSelectedItemPosition();
-            switch (position1) {
-                case 0:
-                    imageView1.setImageResource(R.mipmap.icon_genji);
-                    getWeb("Genji", setting, 1);
-                    break;
-                case 1:
-                    imageView1.setImageResource(R.mipmap.icon_mccree);
-                    getWeb("McCree", setting, 1);
-                    break;
-                case 2:
-                    imageView1.setImageResource(R.mipmap.icon_pharah);
-                    getWeb("Pharah", setting, 1);
-                    break;
-                case 3:
-                    imageView1.setImageResource(R.mipmap.icon_reaper);
-                    getWeb("Reaper", setting, 1);
-                    break;
-                case 4:
-                    imageView1.setImageResource(R.mipmap.icon_soldier76);
-                    getWeb("Soldier76", setting, 1);
-                    break;
-                case 5:
-                    imageView1.setImageResource(R.mipmap.icon_sombra);
-                    getWeb("Sombra", setting, 1);
-                    break;
-                case 6:
-                    imageView1.setImageResource(R.mipmap.icon_tracer);
-                    getWeb("Tracer", setting, 1);
-                    break;
-                case 7:
-                    imageView1.setImageResource(R.mipmap.icon_bastion);
-                    getWeb("Bastion", setting, 1);
-                    break;
-                case 8:
-                    imageView1.setImageResource(R.mipmap.icon_hanzo);
-                    getWeb("Hanzo", setting, 1);
-                    break;
-                case 9:
-                    imageView1.setImageResource(R.mipmap.icon_junkrat);
-                    getWeb("Junkrat", setting, 1);
-                    break;
-                case 10:
-                    imageView1.setImageResource(R.mipmap.icon_mei);
-                    getWeb("Mei", setting, 1);
-                    break;
-                case 11:
-                    imageView1.setImageResource(R.mipmap.icon_torbjorn);
-                    getWeb("Torbjorn", setting, 1);
-                    break;
-                case 12:
-                    imageView1.setImageResource(R.mipmap.icon_widowmaker);
-                    getWeb("Widowmaker", setting, 1);
-                    break;
-                case 13:
-                    imageView1.setImageResource(R.mipmap.icon_dva);
-                    getWeb("D.va", setting, 1);
-                    break;
-                case 14:
-                    imageView1.setImageResource(R.mipmap.icon_reinhardt);
-                    getWeb("Reinhardt", setting, 1);
-                    break;
-                case 15:
-                    imageView1.setImageResource(R.mipmap.icon_roadhog);
-                    getWeb("Roadhog", setting, 1);
-                    break;
-                case 16:
-                    imageView1.setImageResource(R.mipmap.icon_winston);
-                    getWeb("Winston", setting, 1);
-                    break;
-                case 17:
-                    imageView1.setImageResource(R.mipmap.icon_zarya);
-                    getWeb("Zarya", setting, 1);
-                    break;
-                case 18:
-                    imageView1.setImageResource(R.mipmap.icon_ana);
-                    getWeb("Ana", setting, 1);
-                    break;
-                case 19:
-                    imageView1.setImageResource(R.mipmap.icon_lucio);
-                    getWeb("Lucio", setting, 1);
-                    break;
-                case 20:
-                    imageView1.setImageResource(R.mipmap.icon_mercy);
-                    getWeb("Mercy", setting, 1);
-                    break;
-                case 21:
-                    imageView1.setImageResource(R.mipmap.icon_symmetra);
-                    getWeb("Symmetra", setting, 1);
-                    break;
-                case 22:
-                    imageView1.setImageResource(R.mipmap.icon_zenyatta);
-                    getWeb("Zenyatta", setting, 1);
-                    break;
-            }
+            changeHero(spinner1, imageView1, 1);
 
         }else if(parent.getId() == spinner2.getId()){
-            //Right Side Spinner
-            int position2 = spinner2.getSelectedItemPosition ();
-            switch (position2) {
-                case 0:
-                    imageView2.setImageResource(R.mipmap.icon_genji);
-                    getWeb("Genji", setting, 2);
-                    break;
-                case 1:
-                    imageView2.setImageResource(R.mipmap.icon_mccree);
-                    getWeb("McCree", setting, 2);
-                    break;
-                case 2:
-                    imageView2.setImageResource(R.mipmap.icon_pharah);
-                    getWeb("Pharah", setting, 2);
-                    break;
-                case 3:
-                    imageView2.setImageResource(R.mipmap.icon_reaper);
-                    getWeb("Reaper", setting, 2);
-                    break;
-                case 4:
-                    imageView2.setImageResource(R.mipmap.icon_soldier76);
-                    getWeb("Soldier76", setting, 2);
-                    break;
-                case 5:
-                    imageView2.setImageResource(R.mipmap.icon_sombra);
-                    getWeb("Sombra", setting, 2);
-                    break;
-                case 6:
-                    imageView2.setImageResource(R.mipmap.icon_tracer);
-                    getWeb("Tracer", setting, 2);
-                    break;
-                case 7:
-                    imageView2.setImageResource(R.mipmap.icon_bastion);
-                    getWeb("Bastion", setting, 2);
-                    break;
-                case 8:
-                    imageView2.setImageResource(R.mipmap.icon_hanzo);
-                    getWeb("Hanzo", setting, 2);
-                    break;
-                case 9:
-                    imageView2.setImageResource(R.mipmap.icon_junkrat);
-                    getWeb("Junkrat", setting, 2);
-                    break;
-                case 10:
-                    imageView2.setImageResource(R.mipmap.icon_mei);
-                    getWeb("Mei", setting, 2);
-                    break;
-                case 11:
-                    imageView2.setImageResource(R.mipmap.icon_torbjorn);
-                    getWeb("Torbjorn", setting, 2);
-                    break;
-                case 12:
-                    imageView2.setImageResource(R.mipmap.icon_widowmaker);
-                    getWeb("Widowmaker", setting, 2);
-                    break;
-                case 13:
-                    imageView2.setImageResource(R.mipmap.icon_dva);
-                    getWeb("D.va", setting, 2);
-                    break;
-                case 14:
-                    imageView2.setImageResource(R.mipmap.icon_reinhardt);
-                    getWeb("Reinhardt", setting, 2);
-                    break;
-                case 15:
-                    imageView2.setImageResource(R.mipmap.icon_roadhog);
-                    getWeb("Roadhog", setting, 2);
-                    break;
-                case 16:
-                    imageView2.setImageResource(R.mipmap.icon_winston);
-                    getWeb("Winston", setting, 2);
-                    break;
-                case 17:
-                    imageView2.setImageResource(R.mipmap.icon_zarya);
-                    getWeb("Zarya", setting, 2);
-                    break;
-                case 18:
-                    imageView2.setImageResource(R.mipmap.icon_ana);
-                    getWeb("Ana", setting, 2);
-                    break;
-                case 19:
-                    imageView2.setImageResource(R.mipmap.icon_lucio);
-                    getWeb("Lucio", setting, 2);
-                    break;
-                case 20:
-                    imageView2.setImageResource(R.mipmap.icon_mercy);
-                    getWeb("Mercy", setting, 2);
-                    break;
-                case 21:
-                    imageView2.setImageResource(R.mipmap.icon_symmetra);
-                    getWeb("Symmetra", setting, 2);
-                    break;
-                case 22:
-                    imageView2.setImageResource(R.mipmap.icon_zenyatta);
-                    getWeb("Zenyatta", setting, 2);
-                    break;
-            }
+            changeHero(spinner2, imageView2, 2);
         }
     }
 
@@ -348,6 +258,13 @@ public class CharacterActivity extends AppCompatActivity implements AdapterView.
      *
      */
     private class DownloadInfoTask extends AsyncTask<String, Void, String> {
+
+        int side;
+
+        public DownloadInfoTask(int theSide) {
+            super();
+            side = theSide;
+        }
 
         /**
          * doInBackground grabs information from the server.
