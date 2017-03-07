@@ -1,0 +1,69 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="edu.tacoma.uw.plsanch.gitgud.GuideContentFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/IconView">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Guide Content Goes Here. \n\n\n\n\n\n\n\n\n And it should take up all this space."
+            android:id="@+id/ContentView"
+            android:layout_below="@+id/AuthorView"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="84dp" />
+    </ScrollView>
+
+    <ImageView
+        app:srcCompat="@mipmap/icon_overwatch"
+        android:id="@+id/IconView"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_width="75dp"
+        android:layout_height="75dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Title Goes Here"
+        android:id="@+id/TitleView"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/IconView"
+        android:layout_toEndOf="@+id/IconView"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="12dp"
+        android:textSize="20dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Author Goes Here"
+        android:id="@+id/AuthorView"
+        android:layout_alignBottom="@+id/IconView"
+        android:layout_alignLeft="@+id/TitleView"
+        android:layout_alignStart="@+id/TitleView"
+        android:layout_marginBottom="14dp"
+        android:textSize="10dp"/>
+
+    <Button
+        android:text="Favorite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/favoriteButton"
+        android:layout_alignBottom="@+id/AuthorView"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="14dp"
+        android:layout_marginEnd="14dp" />
+
+</RelativeLayout>
