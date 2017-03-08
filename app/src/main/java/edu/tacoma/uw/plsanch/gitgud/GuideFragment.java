@@ -11,7 +11,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -33,11 +35,14 @@ public class GuideFragment extends Fragment {
 
     private static final String ARG_COLUMN_COUNT = "column-count";
     private static final String GUIDE_URL
-            = "http://cssgate.insttech.washington.edu/~_450bteam9/guide.php?cmd=guides";
+            = "http://cssgate.insttech.washington.edu/~_450bteam9/guide.php?cmd=guides&name=";
     private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
     private RecyclerView mRecyclerView;
     private List<Guide> mGuideList;
+
+    private Spinner spinner;
+    private ToggleButton toggleButton;
 
 
 
@@ -69,6 +74,8 @@ public class GuideFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_guide_list, container, false);
+        spinner = (Spinner) view.findViewById(R.id.spinner);
+        toggleButton = (ToggleButton) view.findViewById(R.id.toggleButton);
 
         // Set the adapter
         if (view instanceof RecyclerView) {
@@ -79,13 +86,17 @@ public class GuideFragment extends Fragment {
             } else {
                 mRecyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            String url = GUIDE_URL + "&name=All";
-            DownloadGuidesTask task = new DownloadGuidesTask();
-            task.execute(new String[]{url});
-            Toast toast = Toast.makeText(getActivity(), "Loading Guides, Please Wait...", Toast.LENGTH_SHORT);
-            toast.show();
+            updateList("All");
         }
         return view;
+    }
+
+    public void updateList(String name){
+        String myUrl = (GUIDE_URL + name);
+        DownloadGuidesTask task = new DownloadGuidesTask();
+        task.execute(new String[]{myUrl});
+        Toast toast = Toast.makeText(getActivity(), "Loading Guides, Please Wait...", Toast.LENGTH_SHORT);
+        toast.show();
     }
 
 

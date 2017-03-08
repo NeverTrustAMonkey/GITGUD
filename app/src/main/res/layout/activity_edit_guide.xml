@@ -53,7 +53,8 @@
         android:layout_alignParentEnd="true"
         android:layout_marginRight="11dp"
         android:layout_marginEnd="11dp"
-        android:layout_marginBottom="11dp" />
+        android:layout_marginBottom="11dp"
+        android:onClick="submitButtonPressed"/>
 
     <ScrollView
         android:layout_width="match_parent"
