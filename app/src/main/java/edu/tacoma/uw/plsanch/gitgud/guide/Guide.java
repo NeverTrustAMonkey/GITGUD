@@ -19,17 +19,27 @@ public class Guide implements Serializable {
     String mGuideAuthor;
     String mGuideHero;
     String mGuideText;
-    int mGuideId;
+    String mGuideId;
 
 
     public static final String TITLE = "title", AUTHOR = "username"
-            , HERO = "heroname", TEXT = "content";
+            , HERO = "heroname", TEXT = "content", ID = "id";
 
-    public Guide(String theGuideTitle, String theGuideAuthor, String theGuideHero, String theGuideText) {
+    public Guide(String theIdText, String theGuideTitle, String theGuideAuthor, String theGuideHero, String theGuideText) {
         mGuideTitle = theGuideTitle;
         mGuideAuthor = theGuideAuthor;
         mGuideHero = theGuideHero;
         mGuideText = theGuideText;
+        mGuideId = theIdText;
+    }
+
+
+    public String getmGuideId() {
+        return mGuideId;
+    }
+
+    public void setmGuideId(String mGuideId) {
+        this.mGuideId = mGuideId;
     }
 
     public String getmGuideTitle() {
@@ -78,7 +88,7 @@ public class Guide implements Serializable {
 
                 for (int i = 0; i < arr.length(); i++) {
                     JSONObject obj = arr.getJSONObject(i);
-                    Guide course = new Guide(obj.getString(Guide.TITLE), obj.getString(Guide.AUTHOR)
+                    Guide course = new Guide(obj.getString(Guide.ID), obj.getString(Guide.TITLE), obj.getString(Guide.AUTHOR)
                             , obj.getString(Guide.HERO), obj.getString(Guide.TEXT));
                     courseList.add(course);
                 }

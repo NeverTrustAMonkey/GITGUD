@@ -1,7 +1,9 @@
 package edu.tacoma.uw.plsanch.gitgud;
 
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -18,11 +20,15 @@ import android.widget.Toast;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 
 import edu.tacoma.uw.plsanch.gitgud.guide.Guide;
+import edu.tacoma.uw.plsanch.gitgud.util.SharedPreferenceEntry;
+import edu.tacoma.uw.plsanch.gitgud.util.SharedPreferencesHelper;
 
 public class EditGuideActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -39,10 +45,19 @@ public class EditGuideActivity extends AppCompatActivity implements AdapterView.
     String theTitle;
     String theContent;
 
+    SharedPreferenceEntry entry;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_guide);
+
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(this);
+        SharedPreferencesHelper sharedPreferencesHelper = new SharedPreferencesHelper(
+                sharedPreferences);
+        entry = sharedPreferencesHelper.getLoginInfo();
+        //Toast.makeText(getApplicationContext(), entry.getEmail(), Toast.LENGTH_SHORT).show();
 
         spinner = (Spinner) findViewById(R.id.spinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
@@ -58,16 +73,27 @@ public class EditGuideActivity extends AppCompatActivity implements AdapterView.
         //mLayout = (RelativeLayout) findViewById(R.id.activity_edit_guide);
     }
 
-    public void submitButtonPressed(View v){
+    public void submitButtonPressed(View v) throws UnsupportedEncodingException {
 
+        if(entry.getEmail() == ""){
+            new AlertDialog.Builder(v.getContext())
+                    .setTitle("Not Signed In")
+                    .setMessage("You must be signed in to create a guide.")
+                    .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            finish();
+                        }
+                    })
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .show();
+        }
         myURL = guideSubmitURL;
-        theAuthor = "DanTheTesterMan";
+        theAuthor =  entry.getEmail();
         theTitle = titleText.getText().toString();
         theContent = contentText.getText().toString();
-        theAuthor = theAuthor.replaceAll(" ", "%20");
-        theTitle = theTitle.replaceAll(" ", "%20");
-        theContent = theContent.replaceAll(" ", "%20");
-        theContent = theContent.replaceAll("\n", "%0A");
+        theAuthor = URLEncoder.encode(theAuthor, "UTF-8");
+        theTitle = URLEncoder.encode(theTitle, "UTF-8");
+        theContent = URLEncoder.encode(theContent, "UTF-8");
         myURL += "user=" + theAuthor;
         myURL += "&hero=" + theHero;
         myURL += "&title=" + theTitle;

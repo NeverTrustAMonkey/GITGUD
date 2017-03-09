@@ -9,6 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_centerHorizontal="true"
+        android:id="@+id/guide_content_container"
         android:layout_below="@+id/IconView">
 
         <TextView
@@ -31,39 +32,49 @@
         android:layout_width="75dp"
         android:layout_height="75dp" />
 
-    <TextView
+    <HorizontalScrollView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Title Goes Here"
-        android:id="@+id/TitleView"
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/IconView"
-        android:layout_toEndOf="@+id/IconView"
-        android:layout_marginLeft="20dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="12dp"
-        android:textSize="20dp"/>
+        android:layout_toEndOf="@+id/IconView">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Title Goes Here"
+            android:id="@+id/TitleView"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/IconView"
+            android:layout_toEndOf="@+id/IconView"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="12dp"
+            android:textSize="20dp"/>
+    </HorizontalScrollView>
+
+    <Button
+        android:text="Bookmark"
+        android:layout_width="wrap_content"
+        android:id="@+id/favoriteButton"
+        android:visibility="visible"
+        android:layout_above="@+id/guide_content_container"
+        android:layout_marginBottom="5dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_height="35dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Author Goes Here"
         android:id="@+id/AuthorView"
-        android:layout_alignBottom="@+id/IconView"
-        android:layout_alignLeft="@+id/TitleView"
-        android:layout_alignStart="@+id/TitleView"
-        android:layout_marginBottom="14dp"
-        android:textSize="10dp"/>
-
-    <Button
-        android:text="Favorite"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/favoriteButton"
-        android:layout_alignBottom="@+id/AuthorView"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="14dp"
-        android:layout_marginEnd="14dp" />
+        android:textSize="10dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginStart="25dp"
+        android:layout_alignBaseline="@+id/favoriteButton"
+        android:layout_alignBottom="@+id/favoriteButton"
+        android:layout_toRightOf="@+id/IconView"
+        android:layout_toEndOf="@+id/IconView" />
 
 </RelativeLayout>
