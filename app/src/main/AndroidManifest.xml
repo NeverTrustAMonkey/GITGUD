@@ -30,7 +30,9 @@
             android:label="@string/title_activity_guide"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".EditGuideActivity" />
-        <activity android:name=".GuideBrowserActivity"></activity>
+        <activity android:name=".GuideBrowserActivity" />
+        <activity android:name=".menu.MenuActivity" />
+        <activity android:name=".BookmarkBrowserActivity"></activity>
     </application>
 
 </manifest>

@@ -1,8 +1,11 @@
 package edu.tacoma.uw.plsanch.gitgud;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,8 +14,18 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.ArrayList;
 
 import edu.tacoma.uw.plsanch.gitgud.guide.Guide;
+import edu.tacoma.uw.plsanch.gitgud.util.SharedPreferenceEntry;
+import edu.tacoma.uw.plsanch.gitgud.util.SharedPreferencesHelper;
 
 
 /**
@@ -26,6 +39,7 @@ import edu.tacoma.uw.plsanch.gitgud.guide.Guide;
 public class GuideContentFragment extends Fragment {
 
     public final static String GUIDE_ITEM_SELECTED = "guide_selected";
+    private String BOOKMARK_URL = "http://cssgate.insttech.washington.edu/~_450bteam9/bookmark.php?";
     private TextView mTitleView;
     private TextView mAuthorView;
     private ImageView mIconView;
@@ -35,6 +49,9 @@ public class GuideContentFragment extends Fragment {
     Button createButton;
     Button toggleButton;
     Spinner spinner;
+    Button bookmarkButton;
+
+    SharedPreferenceEntry entry;
 
     public GuideContentFragment() {
         // Required empty public constructor
@@ -71,12 +88,28 @@ public class GuideContentFragment extends Fragment {
         mAuthorView = (TextView) v.findViewById(R.id.AuthorView);
         mContentView = (TextView) v.findViewById(R.id.ContentView);
         updateView(mGuide);
+        bookmarkButton = (Button) v.findViewById(R.id.favoriteButton);
+        bookmarkButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String myURL = BOOKMARK_URL;
+                myURL += "username=" + entry.getEmail();
+                myURL += "&id=," + mGuide.getmGuideId();
+                BookMarkGuideTask task = new BookMarkGuideTask();
+                task.execute(new String[]{myURL});
+            }
+        });
         createButton = (Button) getActivity().findViewById(R.id.createButton);
         toggleButton = (Button) getActivity().findViewById(R.id.toggleButton);
         spinner = (Spinner) getActivity().findViewById(R.id.spinner);
         createButton.setVisibility(View.GONE);
         toggleButton.setVisibility(View.GONE);
         spinner.setVisibility(View.GONE);
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(getActivity());
+        SharedPreferencesHelper sharedPreferencesHelper = new SharedPreferencesHelper(
+                sharedPreferences);
+        entry = sharedPreferencesHelper.getLoginInfo();
         return v;
     }
 
@@ -86,10 +119,6 @@ public class GuideContentFragment extends Fragment {
         toggleButton.setVisibility(View.VISIBLE);
         spinner.setVisibility(View.VISIBLE);
         super.onDestroyView();
-    }
-
-    public void onButtonPressed(Uri uri) {
-
     }
 
     @Override
@@ -162,4 +191,45 @@ public class GuideContentFragment extends Fragment {
             if(heroIconName.equals("zenyatta"))mIconView.setImageResource(R.mipmap.icon_zenyatta);
         }
     }
+
+    private class BookMarkGuideTask extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected String doInBackground(String... urls) {
+            String response = "";
+            HttpURLConnection urlConnection = null;
+            for (String url : urls) {
+                try {
+                    URL urlObject = new URL(url);
+                    urlConnection = (HttpURLConnection) urlObject.openConnection();
+
+                    InputStream content = urlConnection.getInputStream();
+
+                    BufferedReader buffer = new BufferedReader(new InputStreamReader(content));
+                    String s = "";
+                    while ((s = buffer.readLine()) != null) {
+                        response += s;
+                    }
+
+                } catch (Exception e) {
+                    response = "Unable to bookmark, Reason: "
+                            + e.getMessage();
+                }
+                finally {
+                    if (urlConnection != null)
+                        urlConnection.disconnect();
+                }
+            }
+            return response;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            Toast.makeText(getActivity()
+                    , "Guide Bookmarked"
+                    , Toast.LENGTH_LONG)
+                    .show();
+        }
+    }
 }
+
