@@ -9,7 +9,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="edu.tacoma.uw.plsanch.gitgud.CharacterActivity">
+    tools:context="edu.tacoma.uw.plsanch.gitgud.character.CharacterActivity">
 
     <ImageView
         android:layout_height="100dp"

@@ -1,4 +1,4 @@
-package edu.tacoma.uw.plsanch.gitgud;
+package edu.tacoma.uw.plsanch.gitgud.guide;
 
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
@@ -26,6 +26,7 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 
+import edu.tacoma.uw.plsanch.gitgud.R;
 import edu.tacoma.uw.plsanch.gitgud.guide.Guide;
 import edu.tacoma.uw.plsanch.gitgud.util.SharedPreferenceEntry;
 import edu.tacoma.uw.plsanch.gitgud.util.SharedPreferencesHelper;

@@ -1,4 +1,4 @@
-package edu.tacoma.uw.plsanch.gitgud;
+package edu.tacoma.uw.plsanch.gitgud.guide;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -7,10 +7,9 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.Spinner;
 
-import edu.tacoma.uw.plsanch.gitgud.guide.Guide;
+import edu.tacoma.uw.plsanch.gitgud.R;
 
 public class GuideBrowserActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener,
         GuideFragment.OnListFragmentInteractionListener {

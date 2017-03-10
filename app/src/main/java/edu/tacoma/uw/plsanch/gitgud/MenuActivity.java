@@ -7,6 +7,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import edu.tacoma.uw.plsanch.gitgud.character.CharacterActivity;
+import edu.tacoma.uw.plsanch.gitgud.guide.GuideBrowserActivity;
+import edu.tacoma.uw.plsanch.gitgud.login.LoginActivity;
+
 /**
  * The Menu Activity holds Navigation buttons for the different sections of the App
  */
