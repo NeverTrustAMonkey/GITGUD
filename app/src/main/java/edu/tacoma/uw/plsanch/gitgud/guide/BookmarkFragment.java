@@ -96,8 +96,6 @@ public class BookmarkFragment extends Fragment {
         String myUrl = GUIDE_URL;
         myUrl += "&name=" + name;
         myUrl += "&id=0";
-        Toast toasty = Toast.makeText(getActivity(), myUrl, Toast.LENGTH_SHORT);
-        toasty.show();
         BookmarkFragment.DownloadGuidesTask task = new BookmarkFragment.DownloadGuidesTask();
         task.execute(new String[]{myUrl});
         Toast toast = Toast.makeText(getActivity(), "Loading Guides, Please Wait...", Toast.LENGTH_SHORT);

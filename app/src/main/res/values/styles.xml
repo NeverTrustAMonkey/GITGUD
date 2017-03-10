@@ -29,4 +29,16 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="AlertDialogCustom" parent="@android:style/Theme.Dialog">
+        <item name="colorPrimary">@color/ow_light_orange</item>
+        <item name="colorPrimaryDark">@color/ow_orange</item>
+        <item name="colorAccent">@color/ow_light_orange</item>
+        <item name="android:background">@color/ow_black</item>
+        <item name="android:textColor">@color/ow_orange</item>
+
+
+        <item name="android:editTextColor">@color/ow_orange</item>
+        <item name="android:textColorHint">@color/ow_light_orange</item>
+    </style>
+
 </resources>
