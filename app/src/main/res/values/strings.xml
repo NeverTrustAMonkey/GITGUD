@@ -51,5 +51,31 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="all_guides">All Guides</string>
+    <string name="search_by_hero">Search By Hero</string>
+    <string name="specific_hero">Specific Hero</string>
+    <string name="create_new_guide">Create New Guide</string>
+    <string name="enter_title_here">Enter Title Here</string>
+    <string name="submit">Submit</string>
+    <string name="type_your_guide_out_here">Type your guide out here:</string>
+    <string name="placeholder">placeholder</string>
+    <string name="account">Account</string>
+    <string name="characters">Characters</string>
+    <string name="guide_browser">Guide Browser</string>
+    <string name="mainlogo">MainLogo</string>
+    <string name="submitter_goes_here">Submitter goes here.</string>
+    <string name="title_goes_here">Title goes here</string>
+    <string name="logo">logo</string>
+    <string name="author_goes_here">Author Goes Here</string>
+    <string name="bookmark">Bookmark</string>
+    <string name="guide_content_goes_here_n_n_n_n_n_n_n_n_n_and_it_should_take_up_all_this_space">Guide Content Goes Here. \n\n\n\n\n\n\n\n\n And it should take up all this space.</string>
+    <string name="title_goes_here1">Title Goes Here</string>
+    <string name="icon">Icon</string>
+    <string name="my_bookmarks">My Bookmarks</string>
+    <string name="enter_your_password">Enter your password</string>
+    <string name="enter_your_username">Enter your username</string>
+    <string name="sign_in_or_register">Sign in or Register</string>
+    <string name="sign_in_with_facebook">Sign in with Facebook</string>
+    <string name="logout">LOGOUT</string>
 
 </resources>

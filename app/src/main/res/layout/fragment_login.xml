@@ -12,7 +12,7 @@
         android:id="@+id/email_login_text" />
 
     <Button
-        android:text="My Bookmarks"
+        android:text="@string/my_bookmarks"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/bookmark_button" />

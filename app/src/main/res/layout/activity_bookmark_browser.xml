@@ -11,10 +11,10 @@
     tools:context="edu.tacoma.uw.plsanch.gitgud.BookmarkBrowserActivity">
 
     <ToggleButton
-        android:text="Search By Hero"
+        android:text="@string/search_by_hero"
         android:id="@+id/toggleButton"
-        android:textOn="Specific Hero"
-        android:textOff="All Guides"
+        android:textOn="@string/specific_hero"
+        android:textOff="@string/all_guides"
         android:layout_width="160dp"
         android:checked="false"
         android:layout_alignParentTop="true"
@@ -44,7 +44,7 @@
     </ScrollView>
 
     <Button
-        android:text="Create New Guide"
+        android:text="@string/create_new_guide"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:id="@+id/createButton"
