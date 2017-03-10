@@ -35,7 +35,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/IconView"
-        android:layout_toEndOf="@+id/IconView">
+        android:layout_toEndOf="@+id/IconView"
+        android:id="@+id/horizontalScrollView">
 
         <TextView
             android:layout_width="wrap_content"
@@ -72,5 +73,15 @@
         android:layout_toRightOf="@+id/IconView"
         android:layout_toEndOf="@+id/IconView"
         tools:ignore="SmallSp" />
+
+    <Button
+        android:text="Edit"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:visibility="gone"
+        android:id="@+id/editButton"
+        android:layout_alignTop="@+id/favoriteButton"
+        android:layout_toLeftOf="@+id/favoriteButton"
+        android:layout_toStartOf="@+id/favoriteButton" />
 
 </RelativeLayout>

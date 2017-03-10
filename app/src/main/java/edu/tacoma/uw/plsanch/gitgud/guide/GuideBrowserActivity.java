@@ -3,6 +3,8 @@ package edu.tacoma.uw.plsanch.gitgud.guide;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -10,6 +12,8 @@ import android.widget.Button;
 import android.widget.Spinner;
 
 import edu.tacoma.uw.plsanch.gitgud.R;
+import edu.tacoma.uw.plsanch.gitgud.login.RegisterFragment;
+import edu.tacoma.uw.plsanch.gitgud.util.SharedPreferenceEntry;
 
 public class GuideBrowserActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener,
         GuideFragment.OnListFragmentInteractionListener {
@@ -17,10 +21,13 @@ public class GuideBrowserActivity extends AppCompatActivity implements AdapterVi
     Spinner spinner;
     Button createButton;
     Button toggleButton;
+    Button editButton;
 
     GuideFragment guideFragment;
 
     boolean toggled;
+
+    Guide lastViewed;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +43,11 @@ public class GuideBrowserActivity extends AppCompatActivity implements AdapterVi
 
         createButton = (Button) findViewById(R.id.createButton);
         toggleButton = (Button) findViewById(R.id.toggleButton);
+        editButton = (Button) findViewById(R.id.editButton);
+        spinner.setVisibility(View.VISIBLE);
+        createButton.setVisibility(View.VISIBLE);
+        toggleButton.setVisibility(View.VISIBLE);
+
         toggled = false;
 
         if (savedInstanceState == null || getSupportFragmentManager().findFragmentById(R.id.list) == null) {
@@ -44,7 +56,39 @@ public class GuideBrowserActivity extends AppCompatActivity implements AdapterVi
                     .add(R.id.guide_container, guideFragment)
                     .commit();
         }
+        lastViewed = new Guide("0","<Title of Guide>", "<Author of Guide>","<Hero of Guide>","<Content of Guide>");
 
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        getMenuInflater().inflate(R.menu.menu_guide_browser, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        if (id == R.id.action_share) {
+            Intent sendIntent = new Intent();
+            sendIntent.setAction(Intent.ACTION_SEND);
+            sendIntent.putExtra(Intent.EXTRA_TEXT, "Hey, I just found a guide from GIT-GUD for " + lastViewed.getmGuideHero() +
+                    ", made by some person named " + lastViewed.getmGuideAuthor() + ", with the title: " + lastViewed.getmGuideTitle() +
+            "\n\nAnd here is what it says:\n\n" + lastViewed.getmGuideText());
+            sendIntent.setType("text/plain");
+            startActivity(sendIntent);
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    public void setLastViewed(Guide theGuide){
+        lastViewed = theGuide;
     }
 
     public void onToggle(View v) {
