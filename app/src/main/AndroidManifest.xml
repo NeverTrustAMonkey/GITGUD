@@ -32,6 +32,8 @@
         <activity android:name=".guide.EditGuideActivity" />
         <activity android:name=".guide.GuideBrowserActivity" />
         <activity android:name=".guide.BookmarkBrowserActivity"></activity>
+        <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
+
     </application>
 
 </manifest>
