@@ -15,11 +15,8 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Guide Content Goes Here. \n\n\n\n\n\n\n\n\n And it should take up all this space."
+            android:text="@string/guide_content_goes_here_n_n_n_n_n_n_n_n_n_and_it_should_take_up_all_this_space"
             android:id="@+id/ContentView"
-            android:layout_below="@+id/AuthorView"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
             android:layout_marginTop="84dp" />
     </ScrollView>
 
@@ -30,7 +27,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_width="75dp"
-        android:layout_height="75dp" />
+        android:layout_height="75dp"
+        android:contentDescription="@string/icon" />
 
     <HorizontalScrollView
         android:layout_width="wrap_content"
@@ -42,19 +40,16 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="Title Goes Here"
+            android:text="@string/title_goes_here1"
             android:id="@+id/TitleView"
-            android:layout_alignParentTop="true"
-            android:layout_toRightOf="@+id/IconView"
-            android:layout_toEndOf="@+id/IconView"
             android:layout_marginLeft="20dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="12dp"
-            android:textSize="20dp"/>
+            android:textSize="20sp"/>
     </HorizontalScrollView>
 
     <Button
-        android:text="Bookmark"
+        android:text="@string/bookmark"
         android:layout_width="wrap_content"
         android:id="@+id/favoriteButton"
         android:visibility="visible"
@@ -67,14 +62,15 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Author Goes Here"
+        android:text="@string/author_goes_here"
         android:id="@+id/AuthorView"
-        android:textSize="10dp"
+        android:textSize="10sp"
         android:layout_marginLeft="25dp"
         android:layout_marginStart="25dp"
         android:layout_alignBaseline="@+id/favoriteButton"
         android:layout_alignBottom="@+id/favoriteButton"
         android:layout_toRightOf="@+id/IconView"
-        android:layout_toEndOf="@+id/IconView" />
+        android:layout_toEndOf="@+id/IconView"
+        tools:ignore="SmallSp" />
 
 </RelativeLayout>
