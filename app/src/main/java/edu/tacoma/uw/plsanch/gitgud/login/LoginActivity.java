@@ -3,7 +3,7 @@ package edu.tacoma.uw.plsanch.gitgud.login;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
-
+import com.facebook.FacebookSdk;
 import android.os.AsyncTask;
 
 
@@ -64,7 +64,7 @@ public class LoginActivity extends AppCompatActivity {
         String url = LOGIN_URL;
         url += "email=" + account.getEmail();
         url += "&password=" + account.getPassword();
-        task.execute(new String[]{url});
+        task.execute(url);
     }
 
     @Override

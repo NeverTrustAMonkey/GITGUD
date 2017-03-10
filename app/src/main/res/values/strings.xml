@@ -77,5 +77,6 @@
     <string name="sign_in_or_register">Sign in or Register</string>
     <string name="sign_in_with_facebook">Sign in with Facebook</string>
     <string name="logout">LOGOUT</string>
+    <string name="facebook_app_id">238146316649405</string>
 
 </resources>
