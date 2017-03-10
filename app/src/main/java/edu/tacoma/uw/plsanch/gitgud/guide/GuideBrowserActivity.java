@@ -12,8 +12,6 @@ import android.widget.Button;
 import android.widget.Spinner;
 
 import edu.tacoma.uw.plsanch.gitgud.R;
-import edu.tacoma.uw.plsanch.gitgud.login.RegisterFragment;
-import edu.tacoma.uw.plsanch.gitgud.util.SharedPreferenceEntry;
 
 public class GuideBrowserActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener,
         GuideFragment.OnListFragmentInteractionListener {
@@ -76,8 +74,8 @@ public class GuideBrowserActivity extends AppCompatActivity implements AdapterVi
         if (id == R.id.action_share) {
             Intent sendIntent = new Intent();
             sendIntent.setAction(Intent.ACTION_SEND);
-            sendIntent.putExtra(Intent.EXTRA_TEXT, "Hey, I just found a guide from GIT-GUD for " + lastViewed.getmGuideHero() +
-                    ", made by some person named " + lastViewed.getmGuideAuthor() + ", with the title: " + lastViewed.getmGuideTitle() +
+            sendIntent.putExtra(Intent.EXTRA_TEXT, "Hey, I just found a guide on GIT-GUD for " + lastViewed.getmGuideHero() +
+                    ", made by " + lastViewed.getmGuideAuthor() + ", with the title: " + lastViewed.getmGuideTitle() +
             "\n\nAnd here is what it says:\n\n" + lastViewed.getmGuideText());
             sendIntent.setType("text/plain");
             startActivity(sendIntent);

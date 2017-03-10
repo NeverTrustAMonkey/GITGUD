@@ -9,6 +9,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.view.ContextThemeWrapper;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -95,8 +96,8 @@ public class EditGuideActivity extends AppCompatActivity implements AdapterView.
     public void submitButtonPressed(View v) throws UnsupportedEncodingException {
 
         if(entry.getEmail() == ""){
-            new AlertDialog.Builder(v.getContext())
-                    .setTitle("Not Signed In")
+            AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.AlertDialogCustom));
+            builder.setTitle("Not Signed In")
                     .setMessage("You must be signed in to create a guide.")
                     .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
@@ -126,8 +127,8 @@ public class EditGuideActivity extends AppCompatActivity implements AdapterView.
         }
         //Code for AlertDialog ripped from StackOverflow
         // http://stackoverflow.com/questions/2115758/how-do-i-display-an-alert-dialog-on-android
-        new AlertDialog.Builder(v.getContext())
-                .setTitle("Submit Guide")
+        AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.AlertDialogCustom));
+        builder.setTitle("Submit Guide")
                 .setMessage("Are you sure you want to submit this guide?")
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {

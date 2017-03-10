@@ -130,7 +130,11 @@ public class GuideContentFragment extends Fragment {
                 }
             });
         }
-        ((GuideBrowserActivity)getActivity()).setLastViewed(mGuide);
+        if(getActivity().getClass().getSimpleName().equals("BookmarkBrowserActivity")){
+            ((BookmarkBrowserActivity) getActivity()).setLastViewed(mGuide);
+        }else {
+            ((GuideBrowserActivity) getActivity()).setLastViewed(mGuide);
+        }
         return v;
     }
 

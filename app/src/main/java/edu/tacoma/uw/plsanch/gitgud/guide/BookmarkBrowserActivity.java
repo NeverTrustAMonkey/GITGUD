@@ -1,7 +1,10 @@
 package edu.tacoma.uw.plsanch.gitgud.guide;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -40,6 +43,36 @@ public class BookmarkBrowserActivity extends AppCompatActivity implements Adapte
 
     }
 
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        getMenuInflater().inflate(R.menu.menu_guide_browser, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        if (id == R.id.action_share) {
+            Intent sendIntent = new Intent();
+            sendIntent.setAction(Intent.ACTION_SEND);
+            sendIntent.putExtra(Intent.EXTRA_TEXT, "Hey, I just found a guide on GIT-GUD for " + lastViewed.getmGuideHero() +
+                    ", made by " + lastViewed.getmGuideAuthor() + ", with the title: " + lastViewed.getmGuideTitle() +
+                    "\n\nAnd here is what it says:\n\n" + lastViewed.getmGuideText());
+            sendIntent.setType("text/plain");
+            startActivity(sendIntent);
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    public void setLastViewed(Guide theGuide){
+        lastViewed = theGuide;
+    }
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
