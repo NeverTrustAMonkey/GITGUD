@@ -77,7 +77,7 @@ public class GuideBrowserActivity extends AppCompatActivity implements AdapterVi
             Intent sendIntent = new Intent();
             sendIntent.setAction(Intent.ACTION_SEND);
             sendIntent.putExtra(Intent.EXTRA_TEXT, "Hey, I just found a guide from GIT-GUD for " + lastViewed.getmGuideHero() +
-                    ", made by some guy named " + lastViewed.getmGuideAuthor() + ", with the title: " + lastViewed.getmGuideTitle() +
+                    ", made by some person named " + lastViewed.getmGuideAuthor() + ", with the title: " + lastViewed.getmGuideTitle() +
             "\n\nAnd here is what it says:\n\n" + lastViewed.getmGuideText());
             sendIntent.setType("text/plain");
             startActivity(sendIntent);
