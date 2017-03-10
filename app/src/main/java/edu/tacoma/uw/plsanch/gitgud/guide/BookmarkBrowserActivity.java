@@ -18,6 +18,8 @@ public class BookmarkBrowserActivity extends AppCompatActivity implements Adapte
 
     BookmarkFragment guideFragment;
 
+    Guide lastViewed;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +34,9 @@ public class BookmarkBrowserActivity extends AppCompatActivity implements Adapte
         spinner = (Spinner) findViewById(R.id.spinner);
         createButton = (Button) findViewById(R.id.createButton);
         toggleButton = (Button) findViewById(R.id.toggleButton);
+        spinner.setVisibility(View.GONE);
+        createButton.setVisibility(View.GONE);
+        toggleButton.setVisibility(View.GONE);
 
     }
 

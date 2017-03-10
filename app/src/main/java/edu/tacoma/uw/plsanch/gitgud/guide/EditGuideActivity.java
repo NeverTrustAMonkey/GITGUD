@@ -1,6 +1,7 @@
 package edu.tacoma.uw.plsanch.gitgud.guide;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
@@ -41,10 +42,16 @@ public class EditGuideActivity extends AppCompatActivity implements AdapterView.
 
     String myURL;
     String guideSubmitURL = "http://cssgate.insttech.washington.edu/~_450bteam9/addGuide.php?";
+    String guideEditURL = "http://cssgate.insttech.washington.edu/~_450bteam9/editGuide.php?";
+    boolean editing = false;
     String theHero;
     String theAuthor;
     String theTitle;
     String theContent;
+
+    String theGuideId;
+    String theGuideTitle;
+    String theGuideText;
 
     SharedPreferenceEntry entry;
 
@@ -71,6 +78,17 @@ public class EditGuideActivity extends AppCompatActivity implements AdapterView.
         titleText = (EditText) findViewById(R.id.editTextTitle);
         contentText = (EditText) findViewById(R.id.editTextBody);
 
+        Intent intent = getIntent();
+        if(intent.hasExtra("GUIDE_ID")){
+            editing = true;
+            theGuideId = intent.getStringExtra("GUIDE_ID");
+            theGuideTitle = intent.getStringExtra("GUIDE_TITLE");
+            theGuideText = intent.getStringExtra("GUIDE_TEXT");
+            titleText.setText(theGuideTitle);
+            contentText.setText(theGuideText);
+        }
+
+
         //mLayout = (RelativeLayout) findViewById(R.id.activity_edit_guide);
     }
 
@@ -88,17 +106,24 @@ public class EditGuideActivity extends AppCompatActivity implements AdapterView.
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .show();
         }
-        myURL = guideSubmitURL;
         theAuthor =  entry.getEmail();
         theTitle = titleText.getText().toString();
         theContent = contentText.getText().toString();
         theAuthor = URLEncoder.encode(theAuthor, "UTF-8");
         theTitle = URLEncoder.encode(theTitle, "UTF-8");
         theContent = URLEncoder.encode(theContent, "UTF-8");
-        myURL += "user=" + theAuthor;
-        myURL += "&hero=" + theHero;
-        myURL += "&title=" + theTitle;
-        myURL += "&cont=" + theContent;
+        if(editing){
+            myURL = guideEditURL;
+            myURL += "id=" + theGuideId;
+            myURL += "&title=" + theTitle;
+            myURL += "&cont=" + theContent;
+        }else {
+            myURL = guideSubmitURL;
+            myURL += "user=" + theAuthor;
+            myURL += "&hero=" + theHero;
+            myURL += "&title=" + theTitle;
+            myURL += "&cont=" + theContent;
+        }
         //Code for AlertDialog ripped from StackOverflow
         // http://stackoverflow.com/questions/2115758/how-do-i-display-an-alert-dialog-on-android
         new AlertDialog.Builder(v.getContext())
@@ -196,6 +221,7 @@ public class EditGuideActivity extends AppCompatActivity implements AdapterView.
                 Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG).show();
             } else {
                 Toast.makeText(getApplicationContext(), "Guide Submitted Successfully", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Refresh Guide Browser to see Changes", Toast.LENGTH_LONG).show();
                 finish();
             }
 

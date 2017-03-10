@@ -1,6 +1,7 @@
 package edu.tacoma.uw.plsanch.gitgud.guide;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -8,6 +9,8 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -49,6 +52,7 @@ public class GuideContentFragment extends Fragment {
     Button toggleButton;
     Spinner spinner;
     Button bookmarkButton;
+    Button editButton;
 
     SharedPreferenceEntry entry;
 
@@ -100,6 +104,7 @@ public class GuideContentFragment extends Fragment {
         });
         createButton = (Button) getActivity().findViewById(R.id.createButton);
         toggleButton = (Button) getActivity().findViewById(R.id.toggleButton);
+        editButton = (Button) v.findViewById(R.id.editButton);
         spinner = (Spinner) getActivity().findViewById(R.id.spinner);
         createButton.setVisibility(View.GONE);
         toggleButton.setVisibility(View.GONE);
@@ -109,14 +114,28 @@ public class GuideContentFragment extends Fragment {
         SharedPreferencesHelper sharedPreferencesHelper = new SharedPreferencesHelper(
                 sharedPreferences);
         entry = sharedPreferencesHelper.getLoginInfo();
+        if(entry.getEmail().equals(mGuide.getmGuideAuthor())){
+            editButton.setVisibility(View.VISIBLE);
+            editButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getActivity(), EditGuideActivity.class);
+                    String theGuideId = mGuide.getmGuideId();
+                    intent.putExtra("GUIDE_ID", theGuideId);
+                    String theGuideTitle = mGuide.getmGuideTitle();
+                    intent.putExtra("GUIDE_TITLE", theGuideTitle);
+                    String theGuideText = mGuide.getmGuideText();
+                    intent.putExtra("GUIDE_TEXT", theGuideText);
+                    startActivity(intent);
+                }
+            });
+        }
+        ((GuideBrowserActivity)getActivity()).setLastViewed(mGuide);
         return v;
     }
 
     @Override
     public void onDestroyView(){
-        createButton.setVisibility(View.VISIBLE);
-        toggleButton.setVisibility(View.VISIBLE);
-        spinner.setVisibility(View.VISIBLE);
         super.onDestroyView();
     }
 
