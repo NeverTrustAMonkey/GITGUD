@@ -40,6 +40,9 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+
+
+
         // Instantiate a SharedPreferencesHelper.
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(this);

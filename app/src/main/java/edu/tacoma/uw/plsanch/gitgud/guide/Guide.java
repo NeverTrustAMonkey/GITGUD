@@ -1,6 +1,5 @@
 package edu.tacoma.uw.plsanch.gitgud.guide;
 
-import android.widget.ImageView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -10,19 +9,19 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * Created by Zachary on 3/6/2017.
+ * @author Zachary
  */
 
 public class Guide implements Serializable {
 
-    String mGuideTitle;
-    String mGuideAuthor;
-    String mGuideHero;
-    String mGuideText;
-    String mGuideId;
+    private String mGuideTitle;
+    private String mGuideAuthor;
+    private String mGuideHero;
+    private String mGuideText;
+    private String mGuideId;
 
 
-    public static final String TITLE = "title", AUTHOR = "username"
+    private static final String TITLE = "title", AUTHOR = "username"
             , HERO = "heroname", TEXT = "content", ID = "id";
 
     public Guide(String theIdText, String theGuideTitle, String theGuideAuthor, String theGuideHero, String theGuideText) {
@@ -38,24 +37,42 @@ public class Guide implements Serializable {
         return mGuideId;
     }
 
-    public void setmGuideId(String mGuideId) {
-        this.mGuideId = mGuideId;
+    public void setmGuideId(String mGuideId) throws IllegalArgumentException{
+        if(Integer.parseInt(mGuideId) < 0 || mGuideId == null) {
+            throw new IllegalArgumentException("Guide number not in range");
+        }
+        else {
+            this.mGuideId = mGuideId;
+
+        }
     }
 
     public String getmGuideTitle() {
         return mGuideTitle;
     }
 
-    public void setmGuideTitle(String mGuideTitle) {
-        this.mGuideTitle = mGuideTitle;
+    public void setmGuideTitle(String mGuideTitle) throws IllegalArgumentException{
+        if(mGuideTitle.length() > 20 || mGuideTitle.length() < 1 ) {
+            throw new IllegalArgumentException("Invalid Title length");
+        }
+        else {
+            this.mGuideTitle = mGuideTitle;
+
+        }
     }
 
     public String getmGuideAuthor() {
         return mGuideAuthor;
     }
 
-    public void setmGuideAuthor(String mGuideAuthor) {
-        this.mGuideAuthor = mGuideAuthor;
+    public void setmGuideAuthor(String mGuideAuthor) throws IllegalArgumentException{
+        if(mGuideAuthor.length() > 32 || mGuideAuthor.length() < 1 ) {
+            throw new IllegalArgumentException("Invalid Author Name length");
+        }
+        else {
+            this.mGuideAuthor = mGuideAuthor;
+
+        }
     }
 
     public String getmGuideHero() {
@@ -63,7 +80,13 @@ public class Guide implements Serializable {
     }
 
     public void setmGuideHero(String mGuideHero) {
-        this.mGuideHero = mGuideHero;
+        if(mGuideHero.length() > 10 || mGuideHero.length() < 3 ) {
+            throw new IllegalArgumentException("Invalid Hero Name length");
+        }
+        else {
+            this.mGuideHero = mGuideHero;
+
+        }
     }
 
     public String getmGuideText() {
@@ -71,7 +94,13 @@ public class Guide implements Serializable {
     }
 
     public void setmGuideText(String mGuideText) {
-        this.mGuideText = mGuideText;
+        if(mGuideText.length() <1 ) {
+            throw new IllegalArgumentException("Invalid contentlength");
+        }
+        else {
+            this.mGuideText = mGuideText;
+
+        }
     }
 
     /**
