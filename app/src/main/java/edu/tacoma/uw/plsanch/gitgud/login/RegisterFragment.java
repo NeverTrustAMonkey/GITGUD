@@ -1,4 +1,4 @@
-package edu.tacoma.uw.plsanch.gitgud;
+package edu.tacoma.uw.plsanch.gitgud.login;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import edu.tacoma.uw.plsanch.gitgud.R;
 import edu.tacoma.uw.plsanch.gitgud.util.Account;
 
 /**

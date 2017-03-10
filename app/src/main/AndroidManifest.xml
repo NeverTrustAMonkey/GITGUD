@@ -22,17 +22,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".LoginActivity"
+            android:name=".login.LoginActivity"
             android:label="@string/title_activity_login" />
-        <activity android:name=".CharacterActivity" />
+        <activity android:name=".character.CharacterActivity" />
         <activity
-            android:name=".GuideActivity"
+            android:name=".guide.GuideActivity"
             android:label="@string/title_activity_guide"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".EditGuideActivity" />
-        <activity android:name=".GuideBrowserActivity" />
-        <activity android:name=".menu.MenuActivity" />
-        <activity android:name=".BookmarkBrowserActivity"></activity>
+        <activity android:name=".guide.EditGuideActivity" />
+        <activity android:name=".guide.GuideBrowserActivity" />
+        <activity android:name=".guide.BookmarkBrowserActivity"></activity>
     </application>
 
 </manifest>

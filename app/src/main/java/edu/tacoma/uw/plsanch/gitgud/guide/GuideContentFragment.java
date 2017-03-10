@@ -1,4 +1,4 @@
-package edu.tacoma.uw.plsanch.gitgud;
+package edu.tacoma.uw.plsanch.gitgud.guide;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -21,9 +21,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
 
-import edu.tacoma.uw.plsanch.gitgud.guide.Guide;
+import edu.tacoma.uw.plsanch.gitgud.R;
 import edu.tacoma.uw.plsanch.gitgud.util.SharedPreferenceEntry;
 import edu.tacoma.uw.plsanch.gitgud.util.SharedPreferencesHelper;
 
@@ -39,7 +38,7 @@ import edu.tacoma.uw.plsanch.gitgud.util.SharedPreferencesHelper;
 public class GuideContentFragment extends Fragment {
 
     public final static String GUIDE_ITEM_SELECTED = "guide_selected";
-    private String BOOKMARK_URL = "http://cssgate.insttech.washington.edu/~_450bteam9/bookmark.php?";
+    private String BOOKMARK_URL = "http://cssgate.insttech.washington.edu/~_450bteam9/bookmark.php?cmd=add";
     private TextView mTitleView;
     private TextView mAuthorView;
     private ImageView mIconView;
@@ -93,8 +92,8 @@ public class GuideContentFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 String myURL = BOOKMARK_URL;
-                myURL += "username=" + entry.getEmail();
-                myURL += "&id=," + mGuide.getmGuideId();
+                myURL += "&name=" + entry.getEmail();
+                myURL += "&id=" + mGuide.getmGuideId();
                 BookMarkGuideTask task = new BookMarkGuideTask();
                 task.execute(new String[]{myURL});
             }

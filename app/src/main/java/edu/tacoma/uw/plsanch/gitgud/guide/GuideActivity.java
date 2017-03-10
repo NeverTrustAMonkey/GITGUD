@@ -1,4 +1,4 @@
-package edu.tacoma.uw.plsanch.gitgud;
+package edu.tacoma.uw.plsanch.gitgud.guide;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -6,6 +6,8 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+
+import edu.tacoma.uw.plsanch.gitgud.R;
 
 /**
  * The guide activity will hold a list of guides for users to view.

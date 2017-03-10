@@ -1,4 +1,4 @@
-package edu.tacoma.uw.plsanch.gitgud;
+package edu.tacoma.uw.plsanch.gitgud.login;
 
 import android.content.Context;
 import android.content.Intent;
@@ -13,6 +13,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import edu.tacoma.uw.plsanch.gitgud.R;
+import edu.tacoma.uw.plsanch.gitgud.guide.BookmarkBrowserActivity;
 import edu.tacoma.uw.plsanch.gitgud.util.SharedPreferenceEntry;
 import edu.tacoma.uw.plsanch.gitgud.util.SharedPreferencesHelper;
 

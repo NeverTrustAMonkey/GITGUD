@@ -1,4 +1,4 @@
-package edu.tacoma.uw.plsanch.gitgud;
+package edu.tacoma.uw.plsanch.gitgud.guide;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import edu.tacoma.uw.plsanch.gitgud.guide.Guide;
+import edu.tacoma.uw.plsanch.gitgud.R;
 
 import java.util.List;
 

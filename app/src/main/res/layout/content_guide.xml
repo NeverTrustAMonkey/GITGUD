@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="edu.tacoma.uw.plsanch.gitgud.GuideActivity"
+    tools:context="edu.tacoma.uw.plsanch.gitgud.guide.GuideActivity"
     tools:showIn="@layout/activity_guide">
 
     <TextView

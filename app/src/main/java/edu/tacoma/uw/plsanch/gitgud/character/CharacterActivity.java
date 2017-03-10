@@ -1,4 +1,4 @@
-package edu.tacoma.uw.plsanch.gitgud;
+package edu.tacoma.uw.plsanch.gitgud.character;
 
 import android.graphics.Typeface;
 import android.os.AsyncTask;
@@ -18,6 +18,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+
+import edu.tacoma.uw.plsanch.gitgud.R;
 
 import static edu.tacoma.uw.plsanch.gitgud.R.mipmap.icon_counters_synergies;
 import static edu.tacoma.uw.plsanch.gitgud.R.mipmap.icon_strengths_weaknesses;

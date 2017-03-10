@@ -1,4 +1,4 @@
-package edu.tacoma.uw.plsanch.gitgud;
+package edu.tacoma.uw.plsanch.gitgud.guide;
 
 
 import android.content.Context;
@@ -13,9 +13,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Spinner;
 import android.widget.Toast;
-import android.widget.ToggleButton;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -25,7 +23,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.tacoma.uw.plsanch.gitgud.guide.Guide;
+import edu.tacoma.uw.plsanch.gitgud.R;
 import edu.tacoma.uw.plsanch.gitgud.util.SharedPreferenceEntry;
 import edu.tacoma.uw.plsanch.gitgud.util.SharedPreferencesHelper;
 
@@ -37,7 +35,7 @@ public class BookmarkFragment extends Fragment {
 
     private static final String ARG_COLUMN_COUNT = "column-count";
     private static final String GUIDE_URL
-            = "http://cssgate.insttech.washington.edu/~_450bteam9/guide.php?cmd=id";
+            = "http://cssgate.insttech.washington.edu/~_450bteam9/bookmark.php?cmd=list";
     private int mColumnCount = 1;
     private GuideFragment.OnListFragmentInteractionListener mListener;
     private RecyclerView mRecyclerView;
@@ -89,15 +87,17 @@ public class BookmarkFragment extends Fragment {
             } else {
                 mRecyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            updateList("45");
+            updateList(entry.getEmail());
         }
         return view;
     }
 
     public void updateList(String name){
-        String myUrl = (GUIDE_URL);
-        //myUrl += "username=" + entry.getEmail();
+        String myUrl = GUIDE_URL;
         myUrl += "&name=" + name;
+        myUrl += "&id=0";
+        Toast toasty = Toast.makeText(getActivity(), myUrl, Toast.LENGTH_SHORT);
+        toasty.show();
         BookmarkFragment.DownloadGuidesTask task = new BookmarkFragment.DownloadGuidesTask();
         task.execute(new String[]{myUrl});
         Toast toast = Toast.makeText(getActivity(), "Loading Guides, Please Wait...", Toast.LENGTH_SHORT);
