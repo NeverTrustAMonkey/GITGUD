@@ -8,9 +8,11 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
+
  * Guide is a data object that holds information about a user submitted guide
  */
 public class Guide implements Serializable {
+
 
     //the data being held
     private String mGuideTitle;
@@ -19,7 +21,9 @@ public class Guide implements Serializable {
     private String mGuideText;
     private String mGuideId;
 
+
     //the names of the tables in the database
+
     private static final String TITLE = "title", AUTHOR = "username"
             , HERO = "heroname", TEXT = "content", ID = "id";
 
@@ -49,12 +53,16 @@ public class Guide implements Serializable {
         return mGuideId;
     }
 
-    /**
-     * setter method
-     * @param mGuideId is the id to be set
-     */
-    public void setmGuideId(String mGuideId) {
-        this.mGuideId = mGuideId;
+
+    public void setmGuideId(String mGuideId) throws IllegalArgumentException{
+        if(Integer.parseInt(mGuideId) < 0 || mGuideId == null) {
+            throw new IllegalArgumentException("Guide number not in range");
+        }
+        else {
+            this.mGuideId = mGuideId;
+
+        }
+
     }
 
     /**
@@ -65,12 +73,15 @@ public class Guide implements Serializable {
         return mGuideTitle;
     }
 
-    /**
-     * setter method
-     * @param mGuideTitle is the guide title
-     */
-    public void setmGuideTitle(String mGuideTitle) {
-        this.mGuideTitle = mGuideTitle;
+    public void setmGuideTitle(String mGuideTitle) throws IllegalArgumentException{
+        if(mGuideTitle.length() > 20 || mGuideTitle.length() < 1 ) {
+            throw new IllegalArgumentException("Invalid Title length");
+        }
+        else {
+            this.mGuideTitle = mGuideTitle;
+
+        }
+
     }
 
     /**
@@ -81,12 +92,15 @@ public class Guide implements Serializable {
         return mGuideAuthor;
     }
 
-    /**
-     * setter method
-     * @param mGuideAuthor is the guide author to be set
-     */
-    public void setmGuideAuthor(String mGuideAuthor) {
-        this.mGuideAuthor = mGuideAuthor;
+    public void setmGuideAuthor(String mGuideAuthor) throws IllegalArgumentException{
+        if(mGuideAuthor.length() > 32 || mGuideAuthor.length() < 1 ) {
+            throw new IllegalArgumentException("Invalid Author Name length");
+        }
+        else {
+            this.mGuideAuthor = mGuideAuthor;
+
+        }
+
     }
 
     /**
@@ -102,7 +116,13 @@ public class Guide implements Serializable {
      * @param mGuideHero is the hero to be set
      */
     public void setmGuideHero(String mGuideHero) {
-        this.mGuideHero = mGuideHero;
+        if(mGuideHero.length() > 10 || mGuideHero.length() < 3 ) {
+            throw new IllegalArgumentException("Invalid Hero Name length");
+        }
+        else {
+            this.mGuideHero = mGuideHero;
+
+        }
     }
 
     /**
@@ -118,7 +138,13 @@ public class Guide implements Serializable {
      * @param mGuideText is the content to be set
      */
     public void setmGuideText(String mGuideText) {
-        this.mGuideText = mGuideText;
+        if(mGuideText.length() <1 ) {
+            throw new IllegalArgumentException("Invalid contentlength");
+        }
+        else {
+            this.mGuideText = mGuideText;
+
+        }
     }
 
     /**
