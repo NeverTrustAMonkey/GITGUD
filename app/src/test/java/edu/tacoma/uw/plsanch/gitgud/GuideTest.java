@@ -3,7 +3,6 @@ package edu.tacoma.uw.plsanch.gitgud;
 
 import org.junit.Test;
 
-import java.util.ArrayList;
 
 import edu.tacoma.uw.plsanch.gitgud.guide.Guide;
 
