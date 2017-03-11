@@ -25,25 +25,23 @@ import java.util.List;
 import edu.tacoma.uw.plsanch.gitgud.R;
 
 /**
- * A fragment representing a list of Items.
- * <p/>
- * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
- * interface.
+ * The GuideFragment is the base design for viewing guides as fragments on the GuideBrowser
  */
 public class GuideFragment extends Fragment {
 
+    //the column-count
     private static final String ARG_COLUMN_COUNT = "column-count";
+    //base url for webaccess
     private static final String GUIDE_URL
             = "http://cssgate.insttech.washington.edu/~_450bteam9/guide.php?cmd=guides&name=";
+    //only one column
     private int mColumnCount = 1;
+    //listener for guide interaction
     private OnListFragmentInteractionListener mListener;
+    //recycler view that holds the guide items
     private RecyclerView mRecyclerView;
+    //the list of guides
     private List<Guide> mGuideList;
-
-    private Spinner spinner;
-    private ToggleButton toggleButton;
-
-
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -52,6 +50,11 @@ public class GuideFragment extends Fragment {
     public GuideFragment() {
     }
 
+    /**
+     * Standard constructor for GuideFragment
+     * @param columnCount is the number of columns
+     * @return the constructed fragment
+     */
     public static GuideFragment newInstance(int columnCount) {
         GuideFragment fragment = new GuideFragment();
         Bundle args = new Bundle();
@@ -60,6 +63,10 @@ public class GuideFragment extends Fragment {
         return fragment;
     }
 
+    /**
+     * calls the super method
+     * @param savedInstanceState is the saved instance state
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,12 +76,17 @@ public class GuideFragment extends Fragment {
         }
     }
 
+    /**
+     * onCreateView sets up the recyclerview to display the fragments
+     * @param inflater is the inflating class
+     * @param container is the holder of the fragment
+     * @param savedInstanceState is the saved instance state
+     * @return the constructed view
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_guide_list, container, false);
-        spinner = (Spinner) view.findViewById(R.id.spinner);
-        toggleButton = (ToggleButton) view.findViewById(R.id.toggleButton);
 
         // Set the adapter
         if (view instanceof RecyclerView) {
@@ -90,6 +102,10 @@ public class GuideFragment extends Fragment {
         return view;
     }
 
+    /**
+     * updateList calls the webaccess asynctask to download updated information on the guides
+     * @param name is the name of the hero being searched for
+     */
     public void updateList(String name){
         String myUrl = (GUIDE_URL + name);
         DownloadGuidesTask task = new DownloadGuidesTask();
@@ -99,6 +115,10 @@ public class GuideFragment extends Fragment {
     }
 
 
+    /**
+     * calls the super method
+     * @param context is the context
+     */
     @Override
     public void onAttach(Context context) {
 
@@ -111,6 +131,9 @@ public class GuideFragment extends Fragment {
         }
     }
 
+    /**
+     * calls the super method
+     */
     @Override
     public void onDetach() {
         super.onDetach();
@@ -131,8 +154,16 @@ public class GuideFragment extends Fragment {
         void onListFragmentInteraction(Guide item);
     }
 
+    /**
+     * DownloadGuidesTask is the webaccess asynctask that retreives the guide information from the database
+     */
     private class DownloadGuidesTask extends AsyncTask<String, Void, String> {
 
+        /**
+         * doInBackground tries the urls by accessing the internet
+         * @param urls are the urls to be tried
+         * @return a response build for error reporting
+         */
         @Override
         protected String doInBackground(String... urls) {
             String response = "";
@@ -162,6 +193,11 @@ public class GuideFragment extends Fragment {
             return response;
         }
 
+        /**
+         * onPostExecute receives the status of the webaccess and communicates it to the user.
+         * if everything is good it builds the view of guides
+         * @param result is the result of doInBackground
+         */
         @Override
         protected void onPostExecute(String result) {
             // Something wrong with the network or the URL.
@@ -171,7 +207,7 @@ public class GuideFragment extends Fragment {
                 return;
             }
 
-            mGuideList = new ArrayList<Guide>();
+            mGuideList = new ArrayList<>();
             result = Guide.parseGuideJSON(result, mGuideList);
             // Something wrong with the JSON returned.
             if (result != null) {

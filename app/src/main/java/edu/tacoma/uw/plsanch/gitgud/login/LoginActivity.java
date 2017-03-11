@@ -3,7 +3,6 @@ package edu.tacoma.uw.plsanch.gitgud.login;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
-import com.facebook.FacebookSdk;
 import android.os.AsyncTask;
 
 
@@ -25,16 +24,25 @@ import edu.tacoma.uw.plsanch.gitgud.util.SharedPreferenceEntry;
 import edu.tacoma.uw.plsanch.gitgud.util.SharedPreferencesHelper;
 
 /**
- * A login screen that offers login via email/password.
+ * A login screen that offers login via username/password.
  */
 public class LoginActivity extends AppCompatActivity {
 
+    //Holds the user's information after registration
     Account mAccount;
+    //stored sign in information data object
     SharedPreferencesHelper mSharedPreferencesHelper;
+    //webaccess task
     RegisterAsyncTask task;
 
+    //base url for web access
     private String LOGIN_URL = "http://cssgate.insttech.washington.edu/~_450bteam9/login.php?";
 
+    /**
+     * onCreate checks if a user is logged in by accessing the shared preferences
+     * and then starts up the appropriate fragment
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +67,10 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * register builds the webaccess url and calls the asynctask to register/sign in a user.
+     * @param account is the object holding the user's information
+     */
     public void register(Account account) {
         mAccount = account;
         String url = LOGIN_URL;
@@ -67,12 +79,22 @@ public class LoginActivity extends AppCompatActivity {
         task.execute(url);
     }
 
+    /**
+     * onCreateOptionsMenu inflates the menu upon being clicked
+     * @param menu is the menu calling for inflation
+     * @return true
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_guide, menu);
         return true;
     }
 
+    /**
+     * onOptionsItemSelected holds the onclicklistener for the menu item
+     * @param item is the item being clicked
+     * @return true;
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
@@ -93,8 +115,16 @@ public class LoginActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * RegisterAsyncTask is the webaccess task that sends information to the database
+     */
     private class RegisterAsyncTask extends AsyncTask<String, Void, String> {
 
+        /**
+         * doInBackground connects to the server and sends the information and receives the response
+         * @param urls are the urls to access
+         * @return a string response built for error reporting
+         */
         @Override
         protected String doInBackground(String... urls) {
             String response = "";
@@ -124,7 +154,12 @@ public class LoginActivity extends AppCompatActivity {
             return response;
         }
 
-
+        /**
+         * onPostExecute checks to see if doInBackground completed succesfully
+         * Tells the user if they are logged in.
+         * Saves the user's information to shared preferences if they do log in.
+         * @param result is the result of the doInBackground
+         */
         @Override
         protected void onPostExecute(String result) {
             try {

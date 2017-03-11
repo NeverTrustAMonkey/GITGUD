@@ -1,14 +1,8 @@
 package edu.tacoma.uw.plsanch.gitgud.util;
 
 /**
- * Created by Zachary on 3/2/2017.
- */
-
-/**
  * Model class containing personal information that will be
  * saved to SharedPreferences.
- * Add to this class any other app related information
- * that needs to be cached.
  */
 public class SharedPreferenceEntry {
 
@@ -18,17 +12,28 @@ public class SharedPreferenceEntry {
     // Email address of the user.
     private final String mEmail;
 
-    // Add others here..
-
+    /**
+     * SharedPreferenceEntry is a constructor for the class
+     * @param loggedIn is a boolean for whether or not a user is already logged in
+     * @param email is the username of the user
+     */
     public SharedPreferenceEntry(boolean loggedIn, String email) {
         mIsLoggedIn = loggedIn;
         mEmail = email;
     }
 
+    /**
+     * isLoggedIn checks if there is a user logged in.
+     * @return a held boolean
+     */
     public boolean isLoggedIn() {
         return mIsLoggedIn;
     }
 
+    /**
+     * getEmail retreives the user's username
+     * @return a held string
+     */
     public String getEmail() {
         return mEmail;
     }

@@ -15,12 +15,6 @@
         completions."
     </string>
     <string name="title_activity_guide">Guides</string>
-    <string name="large_text">
-        "This page is not Yet implemented.\n\n"
-
-        "Our final release will include guides that are accessible for adding and editing, all linked under login information."
-
-    </string>
     <string name="action_settings">Settings</string>
 
     <string-array name="hero_array">
@@ -49,7 +43,6 @@
         <item>Zenyatta</item>
     </string-array>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="all_guides">All Guides</string>
     <string name="search_by_hero">Search By Hero</string>

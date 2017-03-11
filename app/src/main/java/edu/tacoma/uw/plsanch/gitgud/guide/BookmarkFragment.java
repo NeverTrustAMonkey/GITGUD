@@ -29,17 +29,24 @@ import edu.tacoma.uw.plsanch.gitgud.util.SharedPreferencesHelper;
 
 
 /**
- * A simple {@link Fragment} subclass.
+ * The BookmarkFragment is a duplicate of the GuideFragment used for bookmark searching
  */
 public class BookmarkFragment extends Fragment {
 
+    //the column-count
     private static final String ARG_COLUMN_COUNT = "column-count";
+    //base url for webaccess
     private static final String GUIDE_URL
             = "http://cssgate.insttech.washington.edu/~_450bteam9/bookmark.php?cmd=list";
+    //only one column
     private int mColumnCount = 1;
+    //listener for guide interaction
     private GuideFragment.OnListFragmentInteractionListener mListener;
+    //recycler view that holds the guide items
     private RecyclerView mRecyclerView;
+    //the list of guides
     private List<Guide> mGuideList;
+    //shared preferences for user login info
     SharedPreferenceEntry entry;
 
 
@@ -51,14 +58,23 @@ public class BookmarkFragment extends Fragment {
     public BookmarkFragment() {
     }
 
-    public static GuideFragment newInstance(int columnCount) {
-        GuideFragment fragment = new GuideFragment();
+    /**
+     * Standard constructor for BookmarkFragment
+     * @param columnCount is the number of columns
+     * @return the constructed fragment
+     */
+    public static BookmarkFragment newInstance(int columnCount) {
+        BookmarkFragment fragment = new BookmarkFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_COLUMN_COUNT, columnCount);
         fragment.setArguments(args);
         return fragment;
     }
 
+    /**
+     * calls the super method
+     * @param savedInstanceState
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,6 +84,13 @@ public class BookmarkFragment extends Fragment {
         }
     }
 
+    /**
+     * onCreateView sets up the recyclerview to display the fragments
+     * @param inflater is the inflating class
+     * @param container is the holder of the fragment
+     * @param savedInstanceState is the saved instance state
+     * @return the constructed view
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -92,6 +115,10 @@ public class BookmarkFragment extends Fragment {
         return view;
     }
 
+    /**
+     * updateList calls the webaccess asynctask to download updated information on the guides
+     * @param name is the name of the hero being searched for
+     */
     public void updateList(String name){
         String myUrl = GUIDE_URL;
         myUrl += "&name=" + name;
@@ -102,7 +129,10 @@ public class BookmarkFragment extends Fragment {
         toast.show();
     }
 
-
+    /**
+     * calls the super method
+     * @param context is the context
+     */
     @Override
     public void onAttach(Context context) {
 
@@ -115,6 +145,9 @@ public class BookmarkFragment extends Fragment {
         }
     }
 
+    /**
+     * calls the super method
+     */
     @Override
     public void onDetach() {
         super.onDetach();
@@ -135,6 +168,9 @@ public class BookmarkFragment extends Fragment {
         void onListFragmentInteraction(Guide item);
     }
 
+    /**
+     * DownloadGuidesTask is the webaccess asynctask that retreives the guide information from the database
+     */
     private class DownloadGuidesTask extends AsyncTask<String, Void, String> {
 
         @Override
@@ -166,6 +202,11 @@ public class BookmarkFragment extends Fragment {
             return response;
         }
 
+        /**
+         * onPostExecute receives the status of the webaccess and communicates it to the user.
+         * if everything is good it builds the view of guides
+         * @param result is the result of doInBackground
+         */
         @Override
         protected void onPostExecute(String result) {
             // Something wrong with the network or the URL.
@@ -175,7 +216,7 @@ public class BookmarkFragment extends Fragment {
                 return;
             }
 
-            mGuideList = new ArrayList<Guide>();
+            mGuideList = new ArrayList<>();
             result = Guide.parseGuideJSON(result, mGuideList);
             // Something wrong with the JSON returned.
             if (result != null) {

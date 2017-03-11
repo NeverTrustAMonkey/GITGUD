@@ -20,18 +20,16 @@ import edu.tacoma.uw.plsanch.gitgud.util.SharedPreferencesHelper;
 
 
 /**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link LoginFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link LoginFragment#newInstance} factory method to
- * create an instance of this fragment.
+ * The LoginFragment is the fragment that replaces RegisterFragment when a user is logged in.
  */
 public class LoginFragment extends Fragment {
 
-
+    // unused listener
     private OnFragmentInteractionListener mListener;
 
+    /**
+     * empty constructor
+     */
     public LoginFragment() {
         // Required empty public constructor
     }
@@ -49,15 +47,23 @@ public class LoginFragment extends Fragment {
         return fragment;
     }
 
+    /**
+     * calls the super method
+     * @param savedInstanceState is the saved instance state
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-        }
     }
 
 
-
+    /**
+     * onCreateView holds the onClickListener for the Bookmarks button as well as inflating the fragment
+     * @param inflater is the inflater for the fragment
+     * @param container is the layout holding the fragment
+     * @param savedInstanceState is the saved instance state
+     * @return the created view
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -85,15 +91,21 @@ public class LoginFragment extends Fragment {
         return v;
     }
 
+    /**
+     * calls super method
+     * @param context is the context
+     */
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
     }
 
+    /**
+     * calls super method
+     */
     @Override
     public void onDetach() {
         super.onDetach();
-        mListener = null;
     }
 
     /**
