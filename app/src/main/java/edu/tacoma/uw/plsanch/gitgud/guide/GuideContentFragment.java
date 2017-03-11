@@ -167,10 +167,17 @@ public class GuideContentFragment extends Fragment {
     }
 
     /**
-     * calls super method
+     * calls super method and shows the widgets if the parent activity is guidebrowser
      */
     @Override
     public void onDestroyView(){
+        if(getActivity().getClass().getSimpleName().equals("BookmarkBrowserActivity")){
+
+        }else {
+            createButton.setVisibility(View.VISIBLE);
+            toggleButton.setVisibility(View.VISIBLE); //shows parent widgets
+            spinner.setVisibility(View.VISIBLE);
+        }
         super.onDestroyView();
     }
 
