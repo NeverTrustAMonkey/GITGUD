@@ -9,8 +9,6 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -31,31 +29,39 @@ import edu.tacoma.uw.plsanch.gitgud.util.SharedPreferencesHelper;
 
 
 /**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link GuideContentFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link GuideContentFragment#newInstance} factory method to
- * create an instance of this fragment.
+ * GuideContentFragment is a fragment that displays the guide content to the user
  */
 public class GuideContentFragment extends Fragment {
 
+    //argument for serializable
     public final static String GUIDE_ITEM_SELECTED = "guide_selected";
+    //base url for webaccess for guide bookmarking
     private String BOOKMARK_URL = "http://cssgate.insttech.washington.edu/~_450bteam9/bookmark.php?cmd=add";
+
+    //layouts for information displays
     private TextView mTitleView;
     private TextView mAuthorView;
     private ImageView mIconView;
     private TextView mContentView;
+
+    //the guide being viewed
     private Guide mGuide;
 
+    //parent view buttons
     Button createButton;
     Button toggleButton;
     Spinner spinner;
+
+    //buttons
     Button bookmarkButton;
     Button editButton;
 
+    //SharedPreferenceEntry to check if the user is logged in.
     SharedPreferenceEntry entry;
 
+    /**
+     * empty constructor
+     */
     public GuideContentFragment() {
         // Required empty public constructor
     }
@@ -73,6 +79,10 @@ public class GuideContentFragment extends Fragment {
         return fragment;
     }
 
+    /**
+     * onCreate handles onfragmentinteraction for serializable
+     * @param savedInstanceState is the saved instance state
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,16 +91,32 @@ public class GuideContentFragment extends Fragment {
         }
     }
 
+    /**
+     * onCreateView handles the assignment of all widgets, holds the onclicklistener for bookmark button
+     * hides the parent widgets, checks to see if the user viewing the guide is the author,
+     * and holds the onclick for the author choosing to edit the guide.
+     * @param inflater is the inflater of the view
+     * @param container is the holder of the fragment
+     * @param savedInstanceState is the saved instance state
+     * @return a constructed view
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_guide_content, container, false);
+
         mIconView = (ImageView) v.findViewById(R.id.IconView);
         mTitleView = (TextView) v.findViewById(R.id.TitleView);
         mAuthorView = (TextView) v.findViewById(R.id.AuthorView);
         mContentView = (TextView) v.findViewById(R.id.ContentView);
+        createButton = (Button) getActivity().findViewById(R.id.createButton);
+        toggleButton = (Button) getActivity().findViewById(R.id.toggleButton);
+        editButton = (Button) v.findViewById(R.id.editButton);
+        spinner = (Spinner) getActivity().findViewById(R.id.spinner);
+
         updateView(mGuide);
+
         bookmarkButton = (Button) v.findViewById(R.id.favoriteButton);
         bookmarkButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,18 +128,19 @@ public class GuideContentFragment extends Fragment {
                 task.execute(new String[]{myURL});
             }
         });
-        createButton = (Button) getActivity().findViewById(R.id.createButton);
-        toggleButton = (Button) getActivity().findViewById(R.id.toggleButton);
-        editButton = (Button) v.findViewById(R.id.editButton);
-        spinner = (Spinner) getActivity().findViewById(R.id.spinner);
+
+
         createButton.setVisibility(View.GONE);
-        toggleButton.setVisibility(View.GONE);
+        toggleButton.setVisibility(View.GONE); //hides parent widgets
         spinner.setVisibility(View.GONE);
+
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(getActivity());
         SharedPreferencesHelper sharedPreferencesHelper = new SharedPreferencesHelper(
                 sharedPreferences);
         entry = sharedPreferencesHelper.getLoginInfo();
+
+        //shows the edit button if the user that submitted the guide is viewing it
         if(entry.getEmail().equals(mGuide.getmGuideAuthor())){
             editButton.setVisibility(View.VISIBLE);
             editButton.setOnClickListener(new View.OnClickListener() {
@@ -130,6 +157,7 @@ public class GuideContentFragment extends Fragment {
                 }
             });
         }
+        //sets the last viewed guide for content sharing
         if(getActivity().getClass().getSimpleName().equals("BookmarkBrowserActivity")){
             ((BookmarkBrowserActivity) getActivity()).setLastViewed(mGuide);
         }else {
@@ -138,16 +166,26 @@ public class GuideContentFragment extends Fragment {
         return v;
     }
 
+    /**
+     * calls super method
+     */
     @Override
     public void onDestroyView(){
         super.onDestroyView();
     }
 
+    /**
+     * calls super method
+     * @param context is the context
+     */
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
     }
 
+    /**
+     * calls super method
+     */
     @Override
     public void onDetach() {
         super.onDetach();
@@ -167,14 +205,15 @@ public class GuideContentFragment extends Fragment {
         void onFragmentInteraction(Uri uri);
     }
 
+    /**
+     * During startup, check if there are arguments passed to the fragment
+     * onStart is a good place to do this because the layout has already been
+     * applied to the fragment at this point so we can safely call the method
+     * below that sets the article text.
+     */
     @Override
     public void onStart() {
         super.onStart();
-
-        // During startup, check if there are arguments passed to the fragment.
-        // onStart is a good place to do this because the layout has already been
-        // applied to the fragment at this point so we can safely call the method
-        // below that sets the article text.
         Bundle args = getArguments();
         if (args != null) {
             // Set article based on argument passed in
@@ -182,6 +221,10 @@ public class GuideContentFragment extends Fragment {
         }
     }
 
+    /**
+     * updateView sends the guide's information to the widgets to be displayed to the user.
+     * @param guide is the guide being displayed
+     */
     private void updateView(Guide guide) {
         if (guide != null) {
             mTitleView.setText(guide.getmGuideTitle());
@@ -214,8 +257,16 @@ public class GuideContentFragment extends Fragment {
         }
     }
 
+    /**
+     * BookMarkGuideTask is the webaccess async task that bookmarks a guide for the user
+     */
     private class BookMarkGuideTask extends AsyncTask<String, Void, String> {
 
+        /**
+         * doInBackground tries the urls by accessing the internet
+         * @param urls are the urls to be tried
+         * @return a response build for error reporting
+         */
         @Override
         protected String doInBackground(String... urls) {
             String response = "";
@@ -245,6 +296,10 @@ public class GuideContentFragment extends Fragment {
             return response;
         }
 
+        /**
+         * informs the user that their guide has been bookmarked
+         * @param result is the seult of the doInBackground
+         */
         @Override
         protected void onPostExecute(String result) {
             Toast.makeText(getActivity()

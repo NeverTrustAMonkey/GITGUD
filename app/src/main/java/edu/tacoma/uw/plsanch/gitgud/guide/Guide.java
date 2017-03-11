@@ -1,6 +1,5 @@
 package edu.tacoma.uw.plsanch.gitgud.guide;
 
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -9,11 +8,13 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * @author Zachary
- */
 
+ * Guide is a data object that holds information about a user submitted guide
+ */
 public class Guide implements Serializable {
 
+
+    //the data being held
     private String mGuideTitle;
     private String mGuideAuthor;
     private String mGuideHero;
@@ -21,9 +22,20 @@ public class Guide implements Serializable {
     private String mGuideId;
 
 
+    //the names of the tables in the database
+
     private static final String TITLE = "title", AUTHOR = "username"
             , HERO = "heroname", TEXT = "content", ID = "id";
 
+    /**
+     * Guide is a constructor that builds the data object
+     *
+     * @param theIdText is the guide id
+     * @param theGuideTitle is the guide title
+     * @param theGuideAuthor is the author username
+     * @param theGuideHero is the hero the guide is for
+     * @param theGuideText is the content of the guide
+     */
     public Guide(String theIdText, String theGuideTitle, String theGuideAuthor, String theGuideHero, String theGuideText) {
         mGuideTitle = theGuideTitle;
         mGuideAuthor = theGuideAuthor;
@@ -33,9 +45,14 @@ public class Guide implements Serializable {
     }
 
 
+    /**
+     * getter method
+     * @return the guide id
+     */
     public String getmGuideId() {
         return mGuideId;
     }
+
 
     public void setmGuideId(String mGuideId) throws IllegalArgumentException{
         if(Integer.parseInt(mGuideId) < 0 || mGuideId == null) {
@@ -45,8 +62,13 @@ public class Guide implements Serializable {
             this.mGuideId = mGuideId;
 
         }
+
     }
 
+    /**
+     * getter method
+     * @return the guide title
+     */
     public String getmGuideTitle() {
         return mGuideTitle;
     }
@@ -59,8 +81,13 @@ public class Guide implements Serializable {
             this.mGuideTitle = mGuideTitle;
 
         }
+
     }
 
+    /**
+     * getter method
+     * @return the guide author
+     */
     public String getmGuideAuthor() {
         return mGuideAuthor;
     }
@@ -73,12 +100,21 @@ public class Guide implements Serializable {
             this.mGuideAuthor = mGuideAuthor;
 
         }
+
     }
 
+    /**
+     * getter method
+     * @return the guide hero
+     */
     public String getmGuideHero() {
         return mGuideHero;
     }
 
+    /**
+     * setter method
+     * @param mGuideHero is the hero to be set
+     */
     public void setmGuideHero(String mGuideHero) {
         if(mGuideHero.length() > 10 || mGuideHero.length() < 3 ) {
             throw new IllegalArgumentException("Invalid Hero Name length");
@@ -89,10 +125,18 @@ public class Guide implements Serializable {
         }
     }
 
+    /**
+     * getter method
+     * @return the guide content
+     */
     public String getmGuideText() {
         return mGuideText;
     }
 
+    /**
+     * setter method
+     * @param mGuideText is the content to be set
+     */
     public void setmGuideText(String mGuideText) {
         if(mGuideText.length() <1 ) {
             throw new IllegalArgumentException("Invalid contentlength");

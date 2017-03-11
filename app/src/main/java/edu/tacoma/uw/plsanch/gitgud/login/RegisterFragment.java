@@ -14,11 +14,7 @@ import edu.tacoma.uw.plsanch.gitgud.R;
 import edu.tacoma.uw.plsanch.gitgud.util.Account;
 
 /**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * to handle interaction events.
- * Use the {@link RegisterFragment#newInstance} factory method to
- * create an instance of this fragment.
+ * The RegisterFragment is a class that supports two text entries for user login and registration
  */
 public class RegisterFragment extends Fragment {
 
@@ -26,12 +22,11 @@ public class RegisterFragment extends Fragment {
     EditText email;
     EditText password;
 
+    /**
+     * Empty Constructor
+     */
     public RegisterFragment() {
         // Required empty public constructor
-    }
-
-    public interface OnRegisterListener {
-        public void register(Account account);
     }
 
     /**
@@ -47,13 +42,22 @@ public class RegisterFragment extends Fragment {
         return fragment;
     }
 
+    /**
+     * Calls the super method.
+     * @param savedInstanceState is the saved instance state
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-        }
     }
 
+    /**
+     * onCreateView inflates the fragment and holds the onClickListener for the Sign in or Register button
+     * @param inflater is the inflater
+     * @param container is the layout holding the fragment
+     * @param savedInstanceState is the saved instance state
+     * @return the inflated view
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -72,7 +76,7 @@ public class RegisterFragment extends Fragment {
                     try {
                         parent.register(new Account(email.getText().toString(), password.getText().toString()));
                     } catch(IllegalArgumentException e){
-                        if(e.getMessage() == "Email not Valid") {
+                        if(e.getMessage().equals("Email not Valid")) {
                             Toast.makeText(getActivity()
                                     , "Invalid email"
                                     , Toast.LENGTH_LONG)
@@ -82,7 +86,7 @@ public class RegisterFragment extends Fragment {
                             } catch (InterruptedException er) {
                                 er.printStackTrace();
                             }
-                        } else if (e.getMessage() == "Password not Valid"){
+                        } else if (e.getMessage().equals("Password not Valid")){
                             Toast.makeText(getActivity()
                                     , "Invalid password"
                                     , Toast.LENGTH_LONG)
@@ -102,11 +106,18 @@ public class RegisterFragment extends Fragment {
 
     }
 
+    /**
+     * calls the super method
+     * @param context is the context
+     */
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
     }
 
+    /**
+     * calls the super method
+     */
     @Override
     public void onDetach() {
         super.onDetach();

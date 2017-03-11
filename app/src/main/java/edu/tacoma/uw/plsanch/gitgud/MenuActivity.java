@@ -13,7 +13,6 @@ import android.view.View;
 import android.widget.TextView;
 
 import edu.tacoma.uw.plsanch.gitgud.character.CharacterActivity;
-import edu.tacoma.uw.plsanch.gitgud.guide.EditGuideActivity;
 import edu.tacoma.uw.plsanch.gitgud.guide.GuideBrowserActivity;
 import edu.tacoma.uw.plsanch.gitgud.login.LoginActivity;
 
@@ -22,16 +21,16 @@ import edu.tacoma.uw.plsanch.gitgud.login.LoginActivity;
  */
 public class MenuActivity extends AppCompatActivity {
 
-    /**
-     * onCreate sets the content view
-     *
-     * @param savedInstanceState
-     */
+
 //custom fonts
     TextView tv,tv2,tv3;
     Typeface tf, tf2;
 
-
+    /**
+     * onCreate sets the content view and sets the fancy font for the menu buttons
+     *
+     * @param savedInstanceState is the previous state of the instance
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,12 +51,22 @@ public class MenuActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * onCreateOptionsMenu inflates the options menu view
+     * @param menu is the menu calling the inflation
+     * @return true
+     */
     public boolean onCreateOptionsMenu(Menu menu) {
 
         getMenuInflater().inflate(R.menu.menu_menu, menu);
         return true;
     }
 
+    /**
+     * onOptionsItemSelected listens for the option to be cliked and runs an alert dialog if it is
+     * @param item is the item being clicked
+     * @return true
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
@@ -108,7 +117,7 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     /**
-     * This button listener starts the Guides Activity
+     * This button listener starts the Guide Browser Activity
      *
      * @param view is the View that is calling the method.
      */

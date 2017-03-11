@@ -13,20 +13,33 @@ import android.widget.Spinner;
 
 import edu.tacoma.uw.plsanch.gitgud.R;
 
+/**
+ * GuideBrowserActvity is the holder of guidefragment and the recyclerview for browsing guides
+ * and also holds the content fragment when called
+ */
 public class GuideBrowserActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener,
         GuideFragment.OnListFragmentInteractionListener {
 
+    //the hero search selecting spinner
     Spinner spinner;
+    //the createNewGuideButton
     Button createButton;
+    //the togglebutton for searching by hero
     Button toggleButton;
-    Button editButton;
 
+    //Guidefragment is used to start the guide list
     GuideFragment guideFragment;
 
+    //boolean for whether or not the togglebutton is toggled
     boolean toggled;
 
+    //Held information from the last guide viewed for content sharing purposes
     Guide lastViewed;
 
+    /**
+     * onCreate sets up the activtiy and grabs widgets by id
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +54,6 @@ public class GuideBrowserActivity extends AppCompatActivity implements AdapterVi
 
         createButton = (Button) findViewById(R.id.createButton);
         toggleButton = (Button) findViewById(R.id.toggleButton);
-        editButton = (Button) findViewById(R.id.editButton);
         spinner.setVisibility(View.VISIBLE);
         createButton.setVisibility(View.VISIBLE);
         toggleButton.setVisibility(View.VISIBLE);
@@ -58,12 +70,22 @@ public class GuideBrowserActivity extends AppCompatActivity implements AdapterVi
 
     }
 
+    /**
+     * onCreateOptionsMenu inflates the options menu view
+     * @param menu is the menu calling the inflation
+     * @return true
+     */
     public boolean onCreateOptionsMenu(Menu menu) {
 
         getMenuInflater().inflate(R.menu.menu_guide_browser, menu);
         return true;
     }
 
+    /**
+     * onOptionsItemSelected listens for the option to be cliked and runs an alert dialog if it is
+     * @param item is the item being clicked
+     * @return true
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
@@ -85,10 +107,19 @@ public class GuideBrowserActivity extends AppCompatActivity implements AdapterVi
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Sets the last viewed guide
+     * @param theGuide is the guide being viewed in the contentfragment
+     */
     public void setLastViewed(Guide theGuide){
         lastViewed = theGuide;
     }
 
+    /**
+     * is called everytime the toggle button is toggled,
+     * switches between hero searching and viewing all guides
+     * @param v is the calling view
+     */
     public void onToggle(View v) {
         if(toggled){
             toggled = false;
@@ -100,11 +131,19 @@ public class GuideBrowserActivity extends AppCompatActivity implements AdapterVi
         }
     }
 
+    /**
+     * createNewGuide is the onClick method for the createButton
+     * @param v
+     */
     public void createNewGuide(View v) {
         Intent intent = new Intent(this, EditGuideActivity.class);
         startActivity(intent);
     }
 
+    /**
+     * updateGuideList is called whenever search options are changed to refresh the browser
+     * @param v is the calling view
+     */
     public void updateGuideList(View v) {
         if(toggled){
             int position = spinner.getSelectedItemPosition();
@@ -137,16 +176,31 @@ public class GuideBrowserActivity extends AppCompatActivity implements AdapterVi
     }
 
 
+    /**
+     * updates the guide list when the spinner is changed
+     * @param parent is the adapterview
+     * @param view is the calling view
+     * @param position is the position of the spinner
+     * @param id is the id of the spinner
+     */
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         updateGuideList(view);
     }
 
+    /**
+     * unused method
+     * @param parent is the adapterview
+     */
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
 
+    /**
+     * opens a guidecontentfragment when a guide on the browser is clicked
+     * @param guide is the guide being clicked.
+     */
     @Override
     public void onListFragmentInteraction(Guide guide) {
 

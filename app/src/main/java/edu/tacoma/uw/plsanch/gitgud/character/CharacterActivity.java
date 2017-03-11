@@ -27,7 +27,6 @@ import static edu.tacoma.uw.plsanch.gitgud.R.mipmap.icon_strengths_weaknesses;
 /**
  * This Activity displays quickly accessible information on Heroes in the game Overwatch
  *
- *
  */
 public class CharacterActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -51,7 +50,9 @@ public class CharacterActivity extends AppCompatActivity implements AdapterView.
     /**
      * onCreate establishes the elements needed to display the hero information
      *
-     * @param savedInstanceState
+     * also holds the onclicklistener for the counters and synergies/ strengths and weaknesses button
+     *
+     * @param savedInstanceState is the saved instance state
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,11 +86,11 @@ public class CharacterActivity extends AppCompatActivity implements AdapterView.
 
         imageButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if(setting == "counters"){
+                if(setting.equals("counters")){
                     setting = "strengths";
                     changeHero(spinner1, imageView1, 1);
                     imageButton.setImageResource(icon_strengths_weaknesses);
-                } else if(setting == "strengths"){
+                } else if(setting.equals("strengths")){
                     setting = "counters";
                     changeHero(spinner1, imageView1, 1);
                     imageButton.setImageResource(icon_counters_synergies);
@@ -106,11 +107,6 @@ public class CharacterActivity extends AppCompatActivity implements AdapterView.
 
         Toast toast = Toast.makeText(getApplicationContext(), "Press the 'Counters and Synergies' Button to change display modes.", Toast.LENGTH_LONG);
         toast.show();
-    }
-
-    public void onClickListener(){
-
-
     }
 
     /**
@@ -132,6 +128,13 @@ public class CharacterActivity extends AppCompatActivity implements AdapterView.
         task.execute(theURL);
     }
 
+    /**
+     * changeHero is called everytime a spinner is changed, updates the icon
+     * and grabs proper info from the webaccess for the hero
+     * @param theSpinner is the spinner calling
+     * @param theImageView is the imageview to be changed
+     * @param theSide is what side of the textview is being changed
+     */
     public void changeHero(Spinner theSpinner, ImageView theImageView, int theSide){
         int position = theSpinner.getSelectedItemPosition();
         switch (position) {
