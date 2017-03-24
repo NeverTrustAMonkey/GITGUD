@@ -1,6 +1,7 @@
 package edu.tacoma.uw.plsanch.gitgud.guide;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import edu.tacoma.uw.plsanch.gitgud.R;
 
@@ -20,6 +22,9 @@ import edu.tacoma.uw.plsanch.gitgud.R;
 public class BookmarkBrowserActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener,
         GuideFragment.OnListFragmentInteractionListener {
 
+    //custom fonts
+    TextView tv,tv2;
+    Typeface tf;
 
     //the hero search selecting spinner
     Spinner spinner;
@@ -42,6 +47,14 @@ public class BookmarkBrowserActivity extends AppCompatActivity implements Adapte
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bookmark_browser);
+
+        //set font
+        tv = (TextView) findViewById(R.id.toggleButton);
+        tv2 = (TextView) findViewById(R.id.createButton);
+
+        tf = Typeface.createFromAsset(getAssets(), "fonts/big_noodle_titling.ttf");
+        tv.setTypeface(tf);
+        tv2.setTypeface(tf);
 
         if (savedInstanceState == null || getSupportFragmentManager().findFragmentById(R.id.list) == null) {
             guideFragment = new BookmarkFragment();
